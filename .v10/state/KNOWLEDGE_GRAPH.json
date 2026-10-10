@@ -1,30 +1,1181 @@
 {
+  "schema": "knowledge_graph.v1",
+  "generated": "2026-10-10 / CP-003",
+  "purpose": "05 \u00a76: machine-readable relationship graph \u2014 requirements, decisions, mechanisms, components, data/state, source modules, tests, diagrams, risks, experiments, implementation stages",
   "nodes": [
-    { "id": "mission", "type": "contract", "title": "V10.3 mission package snapshot", "status": "canonical", "path": "mission/", "canonical": true },
-    { "id": "control-plane", "type": "contract", "title": "00_CONTROL_PLANE.md — state machine", "status": "canonical", "path": "mission/model/00_CONTROL_PLANE.md", "canonical": true },
-    { "id": "constitution", "type": "contract", "title": "01_ENGINEERING_CONSTITUTION.md — permanent invariants", "status": "canonical", "path": "mission/model/01_ENGINEERING_CONSTITUTION.md", "canonical": true },
-    { "id": "ledger", "type": "working-memory", "title": "REQUIREMENT_LEDGER.md — R-001..R-064", "status": "active", "path": ".v10/working_memory/REQUIREMENT_LEDGER.md", "canonical": true },
-    { "id": "checkpoint", "type": "working-memory", "title": "CHECKPOINT.md — CP-001", "status": "active", "path": ".v10/working_memory/CHECKPOINT.md", "canonical": true },
-    { "id": "decisions", "type": "working-memory", "title": "DECISION_LOG.md — D-001..D-005", "status": "active", "path": ".v10/working_memory/DECISION_LOG.md", "canonical": true },
-    { "id": "notes", "type": "working-memory", "title": "ACTIVE_NOTES.md", "status": "active", "path": ".v10/working_memory/ACTIVE_NOTES.md", "canonical": true },
-    { "id": "experiments", "type": "working-memory", "title": "EXPERIMENT_REGISTRY.md", "status": "empty", "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md", "canonical": true },
-    { "id": "sources", "type": "working-memory", "title": "SOURCE_INDEX.md", "status": "active", "path": ".v10/working_memory/SOURCE_INDEX.md", "canonical": true },
-    { "id": "contradictions", "type": "working-memory", "title": "CONTRADICTION_REGISTER.md", "status": "empty", "path": ".v10/working_memory/CONTRADICTION_REGISTER.md", "canonical": true },
-    { "id": "risks", "type": "working-memory", "title": "RISK_REGISTER.md — RSK-001..003", "status": "active", "path": ".v10/working_memory/RISK_REGISTER.md", "canonical": true },
-    { "id": "project-state", "type": "machine-state", "title": "PROJECT_STATE.json", "status": "active", "path": ".v10/state/PROJECT_STATE.json", "canonical": true },
-    { "id": "agents-md", "type": "entry", "title": "AGENTS.md — cold-start continuation surface", "status": "active", "path": "AGENTS.md", "canonical": true },
-    { "id": "readme", "type": "entry", "title": "README.md — human entry", "status": "active", "path": "README.md", "canonical": true }
+    {
+      "id": "MISSION",
+      "type": "mission",
+      "name": "FixHUA Blind Genesis V10.3",
+      "path": "mission/model/00_CONTROL_PLANE.md"
+    },
+    {
+      "id": "STATE_A",
+      "type": "mission_state",
+      "name": "STATE_A"
+    },
+    {
+      "id": "STATE_B",
+      "type": "mission_state",
+      "name": "STATE_B"
+    },
+    {
+      "id": "DESIGN_CONVERGED",
+      "type": "mission_state",
+      "name": "DESIGN_CONVERGED"
+    },
+    {
+      "id": "STATE_C",
+      "type": "mission_state",
+      "name": "STATE_C"
+    },
+    {
+      "id": "STATE_D",
+      "type": "mission_state",
+      "name": "STATE_D"
+    },
+    {
+      "id": "R-001..R-064",
+      "type": "requirements",
+      "name": "initial ledger (00/00A/00B/01/03/04)",
+      "path": ".v10/working_memory/REQUIREMENT_LEDGER.md"
+    },
+    {
+      "id": "R-065..R-075",
+      "type": "requirements",
+      "name": "02 discovery retro-extension",
+      "path": ".v10/working_memory/REQUIREMENT_LEDGER.md",
+      "status": "SATISFIED"
+    },
+    {
+      "id": "R-076..R-114",
+      "type": "requirements",
+      "name": "STATE C packaging extension (05/05A/05B/06)",
+      "path": ".v10/working_memory/REQUIREMENT_LEDGER.md"
+    },
+    {
+      "id": "D-001",
+      "type": "decision",
+      "name": "D-001",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-002",
+      "type": "decision",
+      "name": "D-002",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-003",
+      "type": "decision",
+      "name": "D-003",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-004",
+      "type": "decision",
+      "name": "D-004",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-005",
+      "type": "decision",
+      "name": "D-005",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-006",
+      "type": "decision",
+      "name": "D-006",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-007",
+      "type": "decision",
+      "name": "D-007",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-008",
+      "type": "decision",
+      "name": "D-008",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-009",
+      "type": "decision",
+      "name": "D-009",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-010",
+      "type": "decision",
+      "name": "D-010",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-011",
+      "type": "decision",
+      "name": "D-011",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-012",
+      "type": "decision",
+      "name": "D-012",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-013",
+      "type": "decision",
+      "name": "D-013",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-014",
+      "type": "decision",
+      "name": "D-014",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "D-015",
+      "type": "decision",
+      "name": "D-015",
+      "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "FX-OBS",
+      "type": "component",
+      "name": "FX-OBS",
+      "path": "docs/components/FX-OBS.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "M-01",
+      "type": "module",
+      "name": "M-01 app/obs/",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "FX-MODEL",
+      "type": "component",
+      "name": "FX-MODEL",
+      "path": "docs/components/FX-MODEL.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "M-02",
+      "type": "module",
+      "name": "M-02 app/model/",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "FX-POLICY",
+      "type": "component",
+      "name": "FX-POLICY",
+      "path": "docs/components/FX-POLICY.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "M-03",
+      "type": "module",
+      "name": "M-03 app/policy/",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "FX-ACT",
+      "type": "component",
+      "name": "FX-ACT",
+      "path": "docs/components/FX-ACT.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "M-04",
+      "type": "module",
+      "name": "M-04 app/act/+helper/",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "FX-SAFE",
+      "type": "component",
+      "name": "FX-SAFE",
+      "path": "docs/components/FX-SAFE.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "M-05",
+      "type": "module",
+      "name": "M-05 app/safe/",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "FX-UI",
+      "type": "component",
+      "name": "FX-UI",
+      "path": "docs/components/FX-UI.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "M-06",
+      "type": "module",
+      "name": "M-06 app/ui/",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "FX-STORE",
+      "type": "component",
+      "name": "FX-STORE",
+      "path": "docs/components/FX-STORE.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "M-07",
+      "type": "module",
+      "name": "M-07 app/store/",
+      "status": "PROPOSED"
+    },
+    {
+      "id": "ARCH-FX-CP-01",
+      "type": "architecture",
+      "name": "CONTINUUM",
+      "path": "docs/architecture/ARCHITECTURE.md",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-1",
+      "type": "mechanism",
+      "name": "uclamp boost",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-2",
+      "type": "mechanism",
+      "name": "adj nudge",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-3",
+      "type": "mechanism",
+      "name": "max_cached_processes",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-4",
+      "type": "mechanism",
+      "name": "freezer alignment",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-5",
+      "type": "mechanism",
+      "name": "vm regions",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-6",
+      "type": "mechanism",
+      "name": "io deprio",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-7",
+      "type": "mechanism",
+      "name": "pagecache warm",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-8",
+      "type": "mechanism",
+      "name": "thermal advisory",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "CS-9",
+      "type": "mechanism",
+      "name": "lmkd retune (EXP)",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "RESEARCH_ONLY"
+    },
+    {
+      "id": "CS-10",
+      "type": "mechanism",
+      "name": "vendor guidance",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
+      "status": "FULLY_SPECIFIED"
+    },
+    {
+      "id": "SO-1",
+      "type": "data_state",
+      "name": "SO-1",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "SO-2",
+      "type": "data_state",
+      "name": "SO-2",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "SO-3",
+      "type": "data_state",
+      "name": "SO-3",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "SO-4",
+      "type": "data_state",
+      "name": "SO-4",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "SO-5",
+      "type": "data_state",
+      "name": "SO-5",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "SO-6",
+      "type": "data_state",
+      "name": "SO-6",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "SO-7",
+      "type": "data_state",
+      "name": "SO-7",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "SO-8",
+      "type": "data_state",
+      "name": "SO-8",
+      "path": "docs/integration/DATA_STATE_MODEL.md"
+    },
+    {
+      "id": "IF-01",
+      "type": "interface",
+      "name": "IF-01",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "IF-02",
+      "type": "interface",
+      "name": "IF-02",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "IF-03",
+      "type": "interface",
+      "name": "IF-03",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "IF-04",
+      "type": "interface",
+      "name": "IF-04",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "IF-05",
+      "type": "interface",
+      "name": "IF-05",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "IF-06",
+      "type": "interface",
+      "name": "IF-06",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "IF-07",
+      "type": "interface",
+      "name": "IF-07",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "IF-08",
+      "type": "interface",
+      "name": "IF-08",
+      "path": "docs/integration/INTERFACES.md"
+    },
+    {
+      "id": "E-01",
+      "type": "experiment",
+      "name": "E-01",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-02",
+      "type": "experiment",
+      "name": "E-02",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-03",
+      "type": "experiment",
+      "name": "E-03",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-04",
+      "type": "experiment",
+      "name": "E-04",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-05",
+      "type": "experiment",
+      "name": "E-05",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-06",
+      "type": "experiment",
+      "name": "E-06",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-07",
+      "type": "experiment",
+      "name": "E-07",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-08",
+      "type": "experiment",
+      "name": "E-08",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-09",
+      "type": "experiment",
+      "name": "E-09",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-10",
+      "type": "experiment",
+      "name": "E-10",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-11",
+      "type": "experiment",
+      "name": "E-11",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "E-12",
+      "type": "experiment",
+      "name": "E-12",
+      "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+      "status": "READY/PROPOSED (device needed)"
+    },
+    {
+      "id": "RSK-001",
+      "type": "risk",
+      "name": "RSK-001",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-002",
+      "type": "risk",
+      "name": "RSK-002",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-101",
+      "type": "risk",
+      "name": "RSK-101",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-102",
+      "type": "risk",
+      "name": "RSK-102",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-103",
+      "type": "risk",
+      "name": "RSK-103",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-104",
+      "type": "risk",
+      "name": "RSK-104",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-105",
+      "type": "risk",
+      "name": "RSK-105",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-106",
+      "type": "risk",
+      "name": "RSK-106",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-107",
+      "type": "risk",
+      "name": "RSK-107",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-108",
+      "type": "risk",
+      "name": "RSK-108",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-109",
+      "type": "risk",
+      "name": "RSK-109",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "RSK-110",
+      "type": "risk",
+      "name": "RSK-110",
+      "path": ".v10/working_memory/RISK_REGISTER.md"
+    },
+    {
+      "id": "T-E01",
+      "type": "test",
+      "name": "T-E01",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E02",
+      "type": "test",
+      "name": "T-E02",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E03",
+      "type": "test",
+      "name": "T-E03",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E04",
+      "type": "test",
+      "name": "T-E04",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E05",
+      "type": "test",
+      "name": "T-E05",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E06",
+      "type": "test",
+      "name": "T-E06",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E07",
+      "type": "test",
+      "name": "T-E07",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E08",
+      "type": "test",
+      "name": "T-E08",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E09",
+      "type": "test",
+      "name": "T-E09",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E10",
+      "type": "test",
+      "name": "T-E10",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E11",
+      "type": "test",
+      "name": "T-E11",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-E12",
+      "type": "test",
+      "name": "T-E12",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-SCHEMA",
+      "type": "test",
+      "name": "T-SCHEMA",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-AUTH",
+      "type": "test",
+      "name": "T-AUTH",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-PARTIAL",
+      "type": "test",
+      "name": "T-PARTIAL",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-CORRUPT",
+      "type": "test",
+      "name": "T-CORRUPT",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-OSC",
+      "type": "test",
+      "name": "T-OSC",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-ENERGY",
+      "type": "test",
+      "name": "T-ENERGY",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-REGION",
+      "type": "test",
+      "name": "T-REGION",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-REPLAY",
+      "type": "test",
+      "name": "T-REPLAY",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-JOURNAL",
+      "type": "test",
+      "name": "T-JOURNAL",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-CONSENT",
+      "type": "test",
+      "name": "T-CONSENT",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-BUILD",
+      "type": "test",
+      "name": "T-BUILD",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-INSTALL",
+      "type": "test",
+      "name": "T-INSTALL",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "T-REG",
+      "type": "test",
+      "name": "T-REG",
+      "path": "docs/ops/TEST_MATRIX.md",
+      "status": "PLANNED/harness READY"
+    },
+    {
+      "id": "PRODUCT_OVERVIEW",
+      "type": "diagram",
+      "name": "PRODUCT_OVERVIEW",
+      "path": "docs/visuals/PRODUCT_OVERVIEW.mmd"
+    },
+    {
+      "id": "COMPONENT_RELATIONS",
+      "type": "diagram",
+      "name": "COMPONENT_RELATIONS",
+      "path": "docs/visuals/COMPONENT_RELATIONS.mmd"
+    },
+    {
+      "id": "RUNTIME_FLOW",
+      "type": "diagram",
+      "name": "RUNTIME_FLOW",
+      "path": "docs/visuals/RUNTIME_FLOW.mmd"
+    },
+    {
+      "id": "PRIVILEGE_BOUNDARIES",
+      "type": "diagram",
+      "name": "PRIVILEGE_BOUNDARIES",
+      "path": "docs/visuals/PRIVILEGE_BOUNDARIES.mmd"
+    },
+    {
+      "id": "NORMAL_RUNTIME",
+      "type": "diagram",
+      "name": "NORMAL_RUNTIME",
+      "path": "docs/visuals/NORMAL_RUNTIME.mmd"
+    },
+    {
+      "id": "INCIDENT_RUNTIME",
+      "type": "diagram",
+      "name": "INCIDENT_RUNTIME",
+      "path": "docs/visuals/INCIDENT_RUNTIME.mmd"
+    },
+    {
+      "id": "FAILURE_RECOVERY",
+      "type": "diagram",
+      "name": "FAILURE_RECOVERY",
+      "path": "docs/visuals/FAILURE_RECOVERY.mmd"
+    },
+    {
+      "id": "IMPLEMENTATION_ORDER",
+      "type": "diagram",
+      "name": "IMPLEMENTATION_ORDER",
+      "path": "docs/visuals/IMPLEMENTATION_ORDER.mmd"
+    },
+    {
+      "id": "BUILD_RELEASE_FLOW",
+      "type": "diagram",
+      "name": "BUILD_RELEASE_FLOW",
+      "path": "docs/visuals/BUILD_RELEASE_FLOW.mmd"
+    },
+    {
+      "id": "UI_FLOW",
+      "type": "diagram",
+      "name": "UI_FLOW",
+      "path": "docs/visuals/UI_FLOW.mmd"
+    },
+    {
+      "id": "S-001..S-021",
+      "type": "sources",
+      "name": "source index",
+      "path": ".v10/working_memory/SOURCE_INDEX.md"
+    },
+    {
+      "id": "S1_FB1",
+      "type": "stage",
+      "name": "S1_FB1",
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
+    },
+    {
+      "id": "S2_FB2",
+      "type": "stage",
+      "name": "S2_FB2",
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
+    },
+    {
+      "id": "S3_FB3",
+      "type": "stage",
+      "name": "S3_FB3",
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
+    },
+    {
+      "id": "S4_EXP",
+      "type": "stage",
+      "name": "S4_EXP",
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
+    },
+    {
+      "id": "CHECKPOINT",
+      "type": "working_memory",
+      "name": "CHECKPOINT",
+      "path": ".v10/working_memory/CHECKPOINT.md"
+    },
+    {
+      "id": "ACTIVE_NOTES",
+      "type": "working_memory",
+      "name": "ACTIVE_NOTES",
+      "path": ".v10/working_memory/ACTIVE_NOTES.md"
+    },
+    {
+      "id": "CONTRADICTION_REGISTER",
+      "type": "working_memory",
+      "name": "CONTRADICTION_REGISTER",
+      "path": ".v10/working_memory/CONTRADICTION_REGISTER.md"
+    },
+    {
+      "id": "DESIGN_SPACE",
+      "type": "working_memory",
+      "name": "DESIGN_SPACE",
+      "path": ".v10/working_memory/DESIGN_SPACE.md"
+    },
+    {
+      "id": "PROJECT_STATE",
+      "type": "machine_state",
+      "name": "PROJECT_STATE.json",
+      "path": ".v10/state/PROJECT_STATE.json"
+    },
+    {
+      "id": "IMPLEMENTATION_MAP",
+      "type": "machine_state",
+      "name": "IMPLEMENTATION_MAP.json",
+      "path": ".v10/state/IMPLEMENTATION_MAP.json"
+    },
+    {
+      "id": "VISUAL_TRACEABILITY",
+      "type": "machine_state",
+      "name": "VISUAL_TRACEABILITY.json",
+      "path": "docs/visuals/VISUAL_TRACEABILITY.json"
+    }
   ],
   "edges": [
-    { "from": "agents-md", "to": "checkpoint", "relation": "routes-recovery-to" },
-    { "from": "agents-md", "to": "ledger", "relation": "routes-recovery-to" },
-    { "from": "agents-md", "to": "decisions", "relation": "routes-recovery-to" },
-    { "from": "agents-md", "to": "control-plane", "relation": "routes-to-current-state-file" },
-    { "from": "checkpoint", "to": "project-state", "relation": "summarizes" },
-    { "from": "ledger", "to": "mission", "relation": "compiled-from" },
-    { "from": "decisions", "to": "constitution", "relation": "constrained-by" },
-    { "from": "experiments", "to": "notes", "relation": "proposed-from" },
-    { "from": "risks", "to": "experiments", "relation": "mitigated-by" },
-    { "from": "sources", "to": "notes", "relation": "supports" }
+    {
+      "from": "MISSION",
+      "to": "STATE_A",
+      "rel": "has_state"
+    },
+    {
+      "from": "STATE_A",
+      "to": "STATE_B",
+      "rel": "next"
+    },
+    {
+      "from": "STATE_B",
+      "to": "DESIGN_CONVERGED",
+      "rel": "next"
+    },
+    {
+      "from": "DESIGN_CONVERGED",
+      "to": "STATE_C",
+      "rel": "next"
+    },
+    {
+      "from": "STATE_C",
+      "to": "STATE_D",
+      "rel": "next"
+    },
+    {
+      "from": "FX-OBS",
+      "to": "M-01",
+      "rel": "implemented_by(proposed)"
+    },
+    {
+      "from": "FX-MODEL",
+      "to": "M-02",
+      "rel": "implemented_by(proposed)"
+    },
+    {
+      "from": "FX-POLICY",
+      "to": "M-03",
+      "rel": "implemented_by(proposed)"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "M-04",
+      "rel": "implemented_by(proposed)"
+    },
+    {
+      "from": "FX-SAFE",
+      "to": "M-05",
+      "rel": "implemented_by(proposed)"
+    },
+    {
+      "from": "FX-UI",
+      "to": "M-06",
+      "rel": "implemented_by(proposed)"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "M-07",
+      "rel": "implemented_by(proposed)"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "FX-OBS",
+      "rel": "has_component"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "FX-MODEL",
+      "rel": "has_component"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "FX-POLICY",
+      "rel": "has_component"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "FX-ACT",
+      "rel": "has_component"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "FX-SAFE",
+      "rel": "has_component"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "FX-UI",
+      "rel": "has_component"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "FX-STORE",
+      "rel": "has_component"
+    },
+    {
+      "from": "D-006",
+      "to": "ARCH-FX-CP-01",
+      "rel": "selects_category"
+    },
+    {
+      "from": "D-007",
+      "to": "ARCH-FX-CP-01",
+      "rel": "selects_architecture"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-1",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-2",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-3",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-4",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-5",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-6",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-7",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-8",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-9",
+      "rel": "actuates"
+    },
+    {
+      "from": "FX-ACT",
+      "to": "CS-10",
+      "rel": "bypassed_by"
+    },
+    {
+      "from": "FX-UI",
+      "to": "CS-10",
+      "rel": "guides"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-1",
+      "rel": "excludes(ephemeral)"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-2",
+      "rel": "persists"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-3",
+      "rel": "persists"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-4",
+      "rel": "persists"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-5",
+      "rel": "persists"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-6",
+      "rel": "persists"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-7",
+      "rel": "persists"
+    },
+    {
+      "from": "FX-STORE",
+      "to": "SO-8",
+      "rel": "persists"
+    },
+    {
+      "from": "E-01",
+      "to": "FX-OBS",
+      "rel": "gates"
+    },
+    {
+      "from": "E-02",
+      "to": "CS-1",
+      "rel": "gates"
+    },
+    {
+      "from": "E-03",
+      "to": "CS-2",
+      "rel": "gates"
+    },
+    {
+      "from": "E-04",
+      "to": "CS-3",
+      "rel": "gates"
+    },
+    {
+      "from": "E-05",
+      "to": "CS-4",
+      "rel": "gates"
+    },
+    {
+      "from": "E-06",
+      "to": "CS-5",
+      "rel": "gates"
+    },
+    {
+      "from": "E-07",
+      "to": "CS-6",
+      "rel": "gates"
+    },
+    {
+      "from": "E-08",
+      "to": "CS-8",
+      "rel": "gates"
+    },
+    {
+      "from": "E-09",
+      "to": "FX-MODEL",
+      "rel": "gates"
+    },
+    {
+      "from": "E-10",
+      "to": "FX-OBS",
+      "rel": "gates"
+    },
+    {
+      "from": "E-11",
+      "to": "CS-9",
+      "rel": "gates"
+    },
+    {
+      "from": "E-12",
+      "to": "FX-OBS",
+      "rel": "gates"
+    },
+    {
+      "from": "ARCH-FX-CP-01",
+      "to": "S-001..S-021",
+      "rel": "evidence_base"
+    },
+    {
+      "from": "S1_FB1",
+      "to": "S2_FB2",
+      "rel": "next"
+    },
+    {
+      "from": "S2_FB2",
+      "to": "S3_FB3",
+      "rel": "next"
+    },
+    {
+      "from": "S4_EXP",
+      "to": "S3_FB3",
+      "rel": "parallel_never_blocks"
+    },
+    {
+      "from": "IMPLEMENTATION_MAP",
+      "to": "R-001..R-064",
+      "rel": "maps"
+    },
+    {
+      "from": "VISUAL_TRACEABILITY",
+      "to": "PRODUCT_OVERVIEW",
+      "rel": "indexes"
+    }
   ]
 }
