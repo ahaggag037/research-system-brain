@@ -39,7 +39,7 @@ STATUS: READY (device needed)
 HYPOTHESIS: Raising cpu.uclamp.min (bounded, e.g., +20–30% for ≤2 s) at app-launch/switch reduces cold/warm start latency measurably.
 WHY_IT_MATTERS: CF-2 production admission (01 §3).
 INPUT/CONDITIONS: Rooted device; A/B same app set, cleared caches; boost applied via cgroup write at launch detection.
-MEASUREMENTS: `am start -W` TotalTime/WaitTime; Perfetto frame timeline to first frame; schedutil freq trace; energy delta via BatteryStats.
+MEASUREMENTS: `am start -W` TotalTime/WaitTime; Perfetto frame timeline to first frame; schedutil freq trace; energy delta via BatteryStats. Interpretation note (S-026): on kernels ≥6.6 (android15+) the schedutil rework honors uclamp hints more faithfully — record kernel train per run; effect sizes are train-specific.
 EXPECTED_RESULT: ≥10% median launch latency reduction on mid-tier SoC, no sustained freq overshoot after cap expiry.
 FALSIFICATION_CONDITION: <5% change or regression from cluster migration churn.
 ABORT_CONDITION: Thermal warning; instability.
@@ -81,7 +81,7 @@ STATUS: READY (device needed)
 HYPOTHESIS: Frozen cached apps resume slower than non-frozen cached (freeze compaction + unfreeze cost), but cheaper than cold start.
 WHY_IT_MATTERS: Quantifies freezer vs kill trade; informs protect-list policy.
 INPUT/CONDITIONS: Device with use_freezer on; measured resumes after 30 s/5 min/30 min background.
-MEASUREMENTS: Resume latency (activity display time); unfreeze latency from binder FrozenStateChange events; compare freezer off (device_config toggle, documented).
+MEASUREMENTS: Resume latency (activity display time); unfreeze latency — on Android 16+ (API 36) prefer official `IBinder.FrozenStateChangeCallback` (S-025, capability-gated on kernel binder support), fallback = infer from binder FrozenStateChange trace events; compare freezer off (device_config toggle, documented).
 EXPECTED_RESULT: Frozen resume ≥ non-frozen cached, ≪ cold start.
 FALSIFICATION_CONDITION: Frozen ≈ cold start (freezer loses its point) → stronger keep-warm policy justified.
 ABORT_CONDITION: —
@@ -94,8 +94,8 @@ ARTIFACTS: resume latency table.
 STATUS: READY (device needed)
 HYPOTHESIS: State-aware vm tuning (swappiness toward 100–180 when zram is fast — S-018; extra_free_kbytes/watermark_scale_factor within kernel-documented ranges) reduces direct-reclaim stalls during interaction under pressure.
 WHY_IT_MATTERS: FF-2(c)/FF-3 mitigation; validates "no magic values" operating regions (02 §6).
-INPUT/CONDITIONS: Rooted; pressure workload (background alloc + foreground scroll benchmark); per-setting runs.
-MEASUREMENTS: allocstall/duration, PSI some/full, jank rate, zram stats (compress ratio, reads), battery.
+INPUT/CONDITIONS: Rooted; pressure workload (background alloc + foreground scroll benchmark); per-setting runs. **Record reclaim-engine state per run (D-016): `/sys/kernel/mm/lru_gen/enabled` + `min_ttl_ms`; regions calibrated separately for classic LRU vs MGLRU kernels.**
+MEASUREMENTS: allocstall/duration, PSI some/full, jank rate, zram stats (compress ratio, reads), battery; MGLRU generation stats (`/sys/kernel/mm/lru_gen/`) when present.
 EXPECTED_RESULT: Measurable allocstall ↓ at fixed workload vs stock.
 FALSIFICATION_CONDITION: No effect or regression (thrash).
 ABORT_CONDITION: UI freezes >2 s; watchdog trip.
@@ -164,7 +164,7 @@ ARTIFACTS: overhead report.
 STATUS: PROPOSED (requires E-01..E-06 evidence first)
 HYPOTHESIS: Adjusting `ro.lmk.*` thresholds (e.g., kill_heaviest_task, lowmem_min_oom_score bounds, PSI stall thresholds) with lmkd restart yields better continuity/stability trade than stock on target class.
 WHY_IT_MATTERS: Deepest continuity lever; also highest policy risk (kill policy).
-INPUT/CONDITIONS: Bench device, root, full rollback script ready; supervision.
+INPUT/CONDITIONS: Bench device, root, full rollback script ready; supervision. Read effective per-device defaults first (S-023: version drift exists, e.g. kill_timeout_ms 0→100 ms on master) — deltas are computed against observed stock, never assumed defaults.
 MEASUREMENTS: Kill distribution vs pressure; protection gap during restart; stability over soak; resume metrics.
 EXPECTED_RESULT: Fewer foreground-adjacent kills at equal stability.
 FALSIFICATION_CONDITION: Any unexplained instability or gap-window kills.
