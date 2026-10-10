@@ -20,7 +20,7 @@ The mission contract is immutable and lives in `mission/model/`. The state machi
 ## Recovery procedure (do this first, in order)
 
 1. `.v10/working_memory/CHECKPOINT.md` — where the mission is and what is next (includes 05B §8 handoff block).
-2. `.v10/working_memory/REQUIREMENT_LEDGER.md` — every obligation R-001..R-114+ and its status. All MUSTs must reach SATISFIED or BLOCKED(with reason + recovery path) before any `MISSION_COMPLETE` claim (completion lock, 04 §7).
+2. `.v10/working_memory/REQUIREMENT_LEDGER.md` — every obligation R-001..R-133 and its status. All MUSTs must reach SATISFIED or BLOCKED(with reason + recovery path) before any `MISSION_COMPLETE` claim (completion lock, 04 §7).
 3. `.v10/working_memory/DECISION_LOG.md` — active vs superseded decisions; never resurrect a SUPERSEDED decision without recording why.
 4. `.v10/state/PROJECT_STATE.json` — machine-readable truth state; `KNOWLEDGE_GRAPH.json`; `IMPLEMENTATION_MAP.json`.
 5. `docs/project/00_START_HERE.md` — the knowledge-package entry (what FixHUA is, what is/isn't implemented, what is verified, what is unknown, next milestone).
@@ -57,19 +57,19 @@ The mission contract is immutable and lives in `mission/model/`. The state machi
 
 ## Current state (updated each checkpoint — verify against files above)
 
-- Checkpoint: **CP-004** (STATE C complete — knowledge package published; interrupted-session recovery complete: TEST_MATRIX T-E03/T-E06/T-E07 restored).
+- Checkpoint: **CP-005** (STATE D executing — 13-audit final audit run, defects DEFECT-1..4 repaired; ledger closure in progress).
 - Mission state: **STATE D (Final Audit)** — contracts `mission/model/07_FINAL_AUDIT_PROTOCOL.md`, `08_TRANSFER_PACKAGE_SPEC.md` are now active.
 - Architecture: **ARCH-FX-CP-01 "CONTINUUM"** — adaptive continuity control plane (D-006/D-007). Components: FX-OBS, FX-MODEL, FX-POLICY, FX-ACT, FX-SAFE, FX-UI, FX-STORE.
 - Implementation: **FULLY_SPECIFIED (docs); zero code** — no component is IMPLEMENTED; device validation BLOCKED_BY_DEVICE_EVIDENCE (D-015; experiments E-01..E-12 ready).
-- Ledger: R-001…R-114; no active blockers.
-- Next: 13-audit final audit → repair loop → GitHub cold-start validation → final status proof → transfer ZIP.
+- Ledger: R-001…R-133; no active blockers.
+- Next: ledger closure → GitHub cold-start validation → final status proof → transfer ZIP → terminal handoff.
 
 ## Operating rules for continuing agents (05B §2 checklist)
 
 1. **First document:** this file, then CHECKPOINT.md, then `docs/project/00_START_HERE.md`.
 2. **Current phase:** see "Current state" above (verify against PROJECT_STATE.json).
 3. **Machine-readable state:** `.v10/state/PROJECT_STATE.json` (+ KNOWLEDGE_GRAPH.json, IMPLEMENTATION_MAP.json, docs/visuals/VISUAL_TRACEABILITY.json).
-4. **Architecture decisions:** `.v10/working_memory/DECISION_LOG.md` (D-001..D-015; ADR-style records).
+4. **Architecture decisions:** `.v10/working_memory/DECISION_LOG.md` (D-001..D-016; ADR-style records).
 5. **Component contracts:** `docs/components/FX-*.md`.
 6. **Build runbook:** `docs/ops/BUILD_RUNBOOK.md`.
 7. **Test/validation matrix:** `docs/ops/TEST_MATRIX.md`.

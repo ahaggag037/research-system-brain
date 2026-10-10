@@ -14,9 +14,10 @@ Keep this concise.
 - Canonical: `docs/research/RISK_TRANSMUTATION_CATALOG.md` (RT-01..RT-05) and `docs/research/REJECTED_IDEAS.md` (RI-01..RI-06); discovery detail in DESIGN_SPACE.md.
 
 ## Immediate next actions
-1. STATE D: run 13 audits per mission/model/07; repair loop (R-027); ledger closure (07/08 extension).
-2. GitHub cold-start validation (R-036/R-108) + final status proof (R-037).
-3. Transfer ZIP per 08; terminal handoff (MISSION_COMPLETE only if audit permits, R-022).
+1. ~~STATE D: run 13 audits~~ DONE CP-005 (audit/FINAL_AUDIT_REPORT.md; DEFECT-1..4 repaired, re-audit green).
+2. Ledger closure part B/C (R-036/R-037/R-108/R-125/R-127..R-133 flip at validation/packaging).
+3. GitHub cold-start validation on post-repair HEAD (R-036/R-108) + final status proof (R-037).
+4. Transfer ZIP per 08 (dist/ manifest + SHA256SUMS; ZIP to user); terminal handoff (MISSION_COMPLETE only if lock holds, R-022).
 
 ## Recovery log
 - CP-004 (continuation session): previous session lost at quota boundary. Verified HEAD f882f79 unchanged; diffed recovery bundle vs canonical — single delta `docs/ops/TEST_MATRIX.md` (blob 9f81b10… → fd1aa53…, +T-E03/T-E06/T-E07). Row semantics independently verified against EXPERIMENT_REGISTRY (E-03/E-06/E-07 expected results verbatim), ARCHITECTURE.md (CS-2/CS-5/CS-6 gates), PROBLEM_MODEL (G2/G3/G4). Machine maps already carried the IDs. Recovered and persisted. Nothing else differed.
@@ -29,9 +30,12 @@ Keep this concise.
 - Q-R5 GKI matrix 15→6.6/16→6.12/17→6.18; schedutil rework honors uclamp more faithfully (S-026) → E-02 interpretation note.
 - New facts F-016..F-019 in TRUTH_REGISTER §3; D-016 in DECISION_LOG; KG 137 nodes.
 
+## Audit log
+- CP-005: 13 audits executed hostile-reviewer stance. Defects found: DEFECT-1 README stale CP-003; DEFECT-2 stale D-001..D-015 ranges; DEFECT-3 PROJECT_STATE missing explicit `blockers`; DEFECT-4 CP-004→CP-005 transition drift. All repaired same change. Zero architecture changes from audit; zero truth-state violations; zero dangling ID references; zero secrets.
+
 ## Things that must not be forgotten
 - Blindness rules R-008/R-029/R-030 remain active; zero contamination events so far.
 - Truth discipline: no device in environment → device claims stay HYPOTHESIS; readiness labels per 05A §13 (D-015).
 - AGENTS.md update at transition (D-004) — CP-004 refresh done.
 - Repo public: no secrets/device identifiers (R-032).
-- Ledger R-001..R-114; STATE D will extend with 07/08 requirements (R-020).
+- Ledger R-001..R-133 (E4 entered CP-005); closure to terminal statuses within STATE D.

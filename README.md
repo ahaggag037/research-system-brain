@@ -8,11 +8,11 @@ This repository is the primary continuation surface for the mission. Conversatio
 
 | | |
 |---|---|
-| Mission state | STATE C complete → STATE D (Final Audit) |
+| Mission state | STATE D (Final Audit) executing — 13-audit pass done, repairs applied; packaging next |
 | Architecture | **ARCH-FX-CP-01 "CONTINUUM"** — adaptive continuity control plane (D-006/D-007) |
 | Implementation | FULLY_SPECIFIED (documentation); no code yet; device validation BLOCKED_BY_DEVICE_EVIDENCE |
-| Checkpoint | CP-003 |
-| Requirements | R-001…R-114 (`.v10/working_memory/REQUIREMENT_LEDGER.md`) |
+| Checkpoint | CP-005 |
+| Requirements | R-001…R-133 — all MUSTs SATISFIED or closing at handoff (`.v10/working_memory/REQUIREMENT_LEDGER.md`) |
 | Knowledge package | [`docs/project/00_START_HERE.md`](docs/project/00_START_HERE.md) |
 
 ## Where to start

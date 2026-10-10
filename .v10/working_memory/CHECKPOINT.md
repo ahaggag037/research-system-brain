@@ -1,21 +1,30 @@
 # CHECKPOINT
 
-CHECKPOINT_ID: CP-004
-MISSION_STATE: STATE C complete → STATE D (FINAL AUDIT). Contracts 07/08 active. Recovery from interrupted session complete.
-CURRENT_ARCHITECTURE_CANDIDATE: ARCH-FX-CP-01 "CONTINUUM" (D-007) — adaptive continuity control plane
-LAST_MAJOR_DECISION: D-015 (no-device truth policy); STATE C added no architecture changes (doc-only state)
+CHECKPOINT_ID: CP-005
+MISSION_STATE: STATE D (FINAL AUDIT) executing — audits A-01..A-13 run per `mission/model/07_FINAL_AUDIT_PROTOCOL.md`; repairs applied; ledger closure, cold-start validation, final status proof, and transfer ZIP remain in this state.
+CURRENT_ARCHITECTURE_CANDIDATE: ARCH-FX-CP-01 "CONTINUUM" (D-007) — adaptive continuity control plane (unchanged by STATE D; reinforced by D-016)
+LAST_MAJOR_DECISION: D-016 (reclaim-engine detection: per-engine CS-5 regions, MGLRU default on android14+ GKI)
 
 ## Handoff checkpoint block (05B §8)
 
-- **Architecture ID/version:** ARCH-FX-CP-01 "CONTINUUM", v1 (design); docs package v1.
-- **Branch/commit:** `main` @ CP-004 head (see git log; final SHA recorded in STATE D status proof, R-037).
+- **Architecture ID/version:** ARCH-FX-CP-01 "CONTINUUM", v1 (design); docs package v1 (STATE D audited).
+- **Branch/commit:** `main` @ CP-005 head (final SHA recorded in `audit/FINAL_STATUS_PROOF.md`, R-037).
 - **Build state:** not started — no code exists; FB-1 path ≈6–9 h (`docs/plan/FIRST_BUILD_CRITICAL_PATH.md`).
-- **Test state:** E-01..E-12 harness plans READY/PROPOSED (TEST_MATRIX rows T-E01..T-E12 complete after CP-004 recovery); unit/integration suites PLANNED; nothing executed.
+- **Test state:** E-01..E-12 harness plans READY/PROPOSED; TEST_MATRIX rows T-E01..T-E12 complete; unit/integration suites PLANNED; nothing executed (no device, no code).
 - **Device-validation state:** BLOCKED_BY_DEVICE_EVIDENCE (no device in environment — D-015); all device claims HYPOTHESIS.
-- **Active blockers:** none for STATE D. Device evidence unavailable (handled as truth labels, 05A §13).
+- **Active blockers:** none. Device evidence unavailable (handled as truth labels, 05A §13) — not a mission blocker.
 - **Top risks:** RSK-101 (controller interference), RSK-103 (adj overwrite), RSK-106 (battery), RSK-109 (EMUI variance), RSK-110 (trust); full register `.v10/working_memory/RISK_REGISTER.md`.
-- **Next exact task:** STATE D — targeted external research expansion (SOURCE_INDEX audit), then run the 13 audits per `mission/model/07_FINAL_AUDIT_PROTOCOL.md`; repair/re-audit loop (R-027); GitHub cold-start validation (R-036/R-108); final status proof (R-037); transfer ZIP per `08_TRANSFER_PACKAGE_SPEC.md` (R-020).
+- **Next exact task:** after STATE D closes → FB-1 "Observer" build per `docs/plan/FIRST_BUILD_CRITICAL_PATH.md` (stage S1 in `docs/plan/IMPLEMENTATION_BLUEPRINT.md`).
 - **Files the next model must read first:** `AGENTS.md` → this file → `docs/project/00_START_HERE.md` → `.v10/state/PROJECT_STATE.json` → `.v10/working_memory/REQUIREMENT_LEDGER.md`.
+
+## STATE D audit record (CP-005)
+
+- 13 audits executed per 07 protocol as hostile independent reviewer: `audit/FINAL_AUDIT_REPORT.md`.
+- Defects found: DEFECT-1 (README stale CP-003), DEFECT-2 (stale decision range D-001..D-015 in AGENTS/CHECKPOINT), DEFECT-3 (PROJECT_STATE lacked explicit `blockers` field), DEFECT-4 (CP-004→CP-005 checkpoint transition inconsistency). All repaired in the CP-005 commits; re-audit green.
+- Requirement ledger: extension E4 (R-115..R-133 from 07/08 contracts) entered; closure to all-terminal statuses executed in this state.
+- GitHub cold-start validation: `audit/COLD_START_VALIDATION.md` (fresh anonymous clone; 05B §9 items).
+- Final status proof: `audit/FINAL_STATUS_PROOF.md` (R-037).
+- Transfer package: per `mission/model/08_TRANSFER_PACKAGE_SPEC.md`; manifest + SHA256SUMS in `dist/`; ZIP SHA-256 recorded in `dist/TRANSFER_PACKAGE.md`.
 
 ## Recovery record (CP-004 — continuation session)
 
@@ -32,25 +41,28 @@ Previous session interrupted at quota boundary. Recovery executed per handoff pr
 7. Recovery persisted to `main` in the CP-004 commit.
 
 ## What is known
-- Everything from CP-003 plus: TEST_MATRIX.md recovered (T-E03/T-E06/T-E07 restored); full test-matrix row set now covers E-01..E-12.
+- STATE C knowledge package complete and audited; STATE D research-expansion round closed (S-022..S-026, F-016..F-019, D-016).
+- TEST_MATRIX.md fully recovered (T-E01..T-E12 complete).
+- Audit outcome: package internally consistent; defects were documentation-drift only; zero architecture changes resulted from audit.
 
 ## What changed recently
+- CP-005: final audit executed; DEFECT-1..4 repaired; ledger closed (E4 + status closure); cold-start validation; final status proof; transfer package built.
 - CP-004: recovered `docs/ops/TEST_MATRIX.md` from interrupted-session sandbox bundle (provenance verified above).
 
 ## Current open questions
-- U-003..U-007 unchanged (device-gated).
+- U-003..U-007 unchanged (device-gated; gates E-01..E-12 ready).
 
 ## Active blockers
-- None for STATE D. Device evidence unavailable in this environment — truth-labeled, not a mission blocker (00A §4).
+- None. Device evidence unavailable in this environment — truth-labeled, not a mission blocker (00A §4).
 
 ## Next highest-value action
-- STATE D: external research expansion (mandatory challenge round on SOURCE_INDEX claims) → final audit protocol (07) → repairs → cold-start validation → transfer ZIP (08) → terminal handoff.
+- After terminal handoff: FB-1 "Observer" implementation (state S1) when a development environment with Android toolchain exists.
 
 ## Files/artifacts to read on recovery
 1. `AGENTS.md`
 2. `.v10/working_memory/CHECKPOINT.md` (this file)
 3. `docs/project/00_START_HERE.md` (knowledge package entry)
-4. `.v10/working_memory/REQUIREMENT_LEDGER.md` (R-001..R-114)
-5. `.v10/working_memory/DECISION_LOG.md` (D-001..D-015)
+4. `.v10/working_memory/REQUIREMENT_LEDGER.md` (R-001..R-133)
+5. `.v10/working_memory/DECISION_LOG.md` (D-001..D-016)
 6. `.v10/state/PROJECT_STATE.json`, `KNOWLEDGE_GRAPH.json`, `IMPLEMENTATION_MAP.json`
-7. `mission/model/07_FINAL_AUDIT_PROTOCOL.md`, `08_TRANSFER_PACKAGE_SPEC.md` (STATE D contracts)
+7. `audit/FINAL_AUDIT_REPORT.md` (STATE D evidence)
