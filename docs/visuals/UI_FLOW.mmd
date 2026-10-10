@@ -1,0 +1,50 @@
+%% UI_FLOW — product/UI visualization (06 §5)
+flowchart TB
+    subgraph SCREENS["main screens"]
+        HOME["Home / Diagnosis<br/>system status: pressure timeline, kill events,<br/>vendor-policy exposure, safety badge"]
+        CONSENT["Consent center<br/>tier 1 diagnosis · tier 2 actuation · tier 3 experimental<br/>(nothing pre-checked; risk statements)"]
+        JOURNAL["Action journal<br/>every intent/admission/actuation/readback/rollback<br/>filterable, exportable"]
+        GUIDE["Vendor settings guide (CS-10)<br/>detected state → guided steps → user executes"]
+        EXPER["Experiments panel<br/>E-xx states · canary flags (tier-3 fenced)"]
+        ALERT["Safety alerts<br/>oscillation / regression / quarantine notices"]
+    end
+
+    subgraph DECISIONS["user decisions"]
+        D1["grant tier 1 (observe)"]
+        D2["grant tier 2 (actuate, PRODUCTION surfaces only)"]
+        D3["grant tier 3 (EXPERIMENTAL canaries)"]
+        D4["kill switch → OBSERVATION_ONLY"]
+        D5["run diagnostic trace (Perfetto, time-boxed)"]
+        D6["reset learning / settings / history"]
+    end
+
+    subgraph MAP["UI ↔ runtime mapping"]
+        SAFE["FX-SAFE: consent state, safety mode"]
+        STO["FX-STORE: journal queries"]
+        OBS["FX-OBS: diagnosis data, trace sessions"]
+    end
+
+    HOME --> D1
+    CONSENT --> D2
+    CONSENT --> D3
+    HOME --> D4
+    HOME --> D5
+    JOURNAL --> STO
+    GUIDE --> OBS
+    EXPER --> SAFE
+    ALERT --> SAFE
+    D1 --> SAFE
+    D2 --> SAFE
+    D3 --> SAFE
+    D4 --> SAFE
+    D5 --> OBS
+    D6 --> STO
+
+    subgraph ERRSTATES["recovery/error states shown honestly"]
+        E1["degraded mode badge (no root / missing capability)"]
+        E2["restore pending (helper unreachable mid-rollback)"]
+        E3["HYPOTHESIS badges on unvalidated claims (D-015)"]
+    end
+    HOME --> E1
+    HOME --> E2
+    HOME --> E3

@@ -1,0 +1,35 @@
+%% PRIVILEGE_BOUNDARIES — who can touch what (06 §1d)
+flowchart TB
+    subgraph UNPRIV["UNPRIVILEGED — app process"]
+        UI["FX-UI"] 
+        OBS["FX-OBS"]
+        MDL["FX-MODEL"]
+        POL["FX-POLICY"]
+        SAFE["FX-SAFE"]
+        ACTC["FX-ACT client"]
+        STO["FX-STORE (app-private storage)"]
+    end
+
+    subgraph BOUNDARY["THE ONLY CROSS-PRIVILEGE CHANNEL (IF-05)"]
+        SOCK["abstract UNIX socket<br/>per-install token + peer-UID auth<br/>versioned schema, typed bounds<br/>NO shell / NO network / NO eval (INV-3)"]
+    end
+
+    subgraph ROOT["ROOT — fxhelperd only"]
+        HELPER["fxhelperd<br/>fixed command set CS-1,2,5,6,7,9 + READBACK/SNAPSHOT/PROBE"]
+    end
+
+    subgraph PLATFORM["platform-documented paths"]
+        DCFG["device_config (CS-3/CS-4)<br/>documented overrides (S-013)"]
+        SETTINGS["system settings screens (CS-10)<br/>user executes"]
+    end
+
+    subgraph FORBIDDEN["FORBIDDEN — no code path exists"]
+        THERM["thermal protection config (INV-1)"]
+        ACCT["account/DRM/integrity bypass (INV-2)"]
+        SHELL["arbitrary root commands (INV-3)"]
+    end
+
+    ACTC --> SOCK --> HELPER
+    ACTC --> DCFG
+    UI --> SETTINGS
+    HELPER -. never .-> FORBIDDEN

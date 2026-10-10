@@ -1,0 +1,33 @@
+%% COMPONENT_RELATIONS — major component relationships and ownership (06 §1b)
+flowchart LR
+    subgraph APP["app process (unprivileged)"]
+        FXOBS["FX-OBS (M-01)"]
+        FXMODEL["FX-MODEL (M-02)"]
+        FXPOLICY["FX-POLICY (M-03)"]
+        FXACTC["FX-ACT client (M-04)"]
+        FXSAFE["FX-SAFE (M-05)"]
+        FXUI["FX-UI (M-06)"]
+        FXSTORE["FX-STORE (M-07)"]
+    end
+    subgraph ROOT["root context"]
+        HELPER["fxhelperd (M-04 helper)"]
+    end
+    subgraph SHARED["shared"]
+        SCHEMAS["schemas/ (M-08)"]
+        BENCH["bench/ (M-09)"]
+    end
+
+    FXOBS -- "IF-01 ObsEvent stream" --> FXMODEL
+    FXMODEL -- "IF-02 StateEstimate / PredictionSet" --> FXPOLICY
+    FXPOLICY -- "IF-03 ActionIntent" --> FXSAFE
+    FXSAFE -- "IF-04 admitted intent" --> FXACTC
+    FXACTC -- "IF-05 schema cmd (token+UID)" --> HELPER
+    FXOBS -- "probe results" --> FXSTORE
+    FXMODEL -- "learned state" --> FXSTORE
+    FXSAFE -- "journal (append-only)" --> FXSTORE
+    FXACTC -- "readbacks" --> FXSTORE
+    FXUI -- "IF-07 consent / queries" --> FXSAFE
+    FXUI -- "reads" --> FXSTORE
+    FXSAFE -- "safety state" --> FXUI
+    SCHEMAS -. validates .-> APP
+    BENCH -. drives .-> APP

@@ -1,0 +1,31 @@
+%% RUNTIME_FLOW — runtime data/control flow, normal loop (06 §1c)
+sequenceDiagram
+    autonumber
+    participant DEV as Device surfaces / kernel
+    participant OBS as FX-OBS
+    participant MDL as FX-MODEL
+    participant POL as FX-POLICY
+    participant SAFE as FX-SAFE
+    participant ACT as FX-ACT/fxhelperd
+    participant STO as FX-STORE
+
+    DEV->>OBS: PSI trigger fires / lifecycle event / counter tick (≤1 Hz steady)
+    OBS->>MDL: ObsEvent (IF-01)
+    MDL->>MDL: update StateEstimate / PredictionSet (confidence, abstain)
+    MDL-->>POL: change notification (IF-02)
+    POL->>POL: region evaluation (hysteresis, dwell, rate, energy)
+    alt intents needed
+        POL->>SAFE: ActionIntent(s) (IF-03)
+        SAFE->>SAFE: admission check (surface state ≥ required? consent tier? guards?)
+        alt admitted
+            SAFE->>ACT: admitted intent (IF-04)
+            ACT->>DEV: schema command write (IF-05, privileged) or device_config
+            ACT->>DEV: readback verify
+            ACT->>STO: journal ACTUATION + READBACK (before/after)
+        else rejected/expired
+            SAFE->>STO: journal ADMISSION reject
+        end
+    else hold
+        POL->>STO: decision log (no-op)
+    end
+    STO-->>OBS: (registry/config reads on demand)

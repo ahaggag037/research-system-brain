@@ -1,0 +1,35 @@
+%% FAILURE_RECOVERY — failure classes to recovery paths (06 §1g)
+flowchart LR
+    subgraph FAIL["failure classes (FAILURE_RECOVERY_MATRIX)"]
+        F01["FR-01 no root"]
+        F02["FR-02 capability missing"]
+        F03["FR-03/04 stale/corrupt state"]
+        F05["FR-05/06 failed/partial write"]
+        F07["FR-07/08 helper/app crash"]
+        F09["FR-09 reboot mid-work"]
+        F10["FR-10 regression linked to us"]
+        F11["FR-11 OTA change"]
+        F12["FR-12 failed update"]
+        F13["FR-13 global corruption"]
+    end
+
+    subgraph RECOVER["recovery machinery"]
+        SNAP["stock snapshots (SO-5)"]
+        JRNL["journal replay + readback audit (SO-8)"]
+        PROBE["capability reprobe (SO-7)"]
+        SNAPCFG["config snapshot restore (SO-2)"]
+        PRIORS["model reset to priors (SO-3)"]
+        DEGRADE["degraded modes (ARCH-D baseline)"]
+    end
+
+    F01 --> DEGRADE
+    F02 --> PROBE --> DEGRADE
+    F03 --> SNAPCFG
+    F03 --> PRIORS
+    F05 --> JRNL
+    F07 --> JRNL
+    F09 --> JRNL --> PROBE
+    F10 --> SNAP --> DEGRADE
+    F11 --> PROBE
+    F12 --> JRNL
+    F13 --> SNAPCFG

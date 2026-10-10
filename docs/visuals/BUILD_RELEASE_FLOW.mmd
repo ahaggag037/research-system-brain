@@ -1,0 +1,17 @@
+%% BUILD_RELEASE_FLOW — build/release pipeline (06 §1i)
+flowchart LR
+    subgraph LOCAL["local"]
+        CODE["checkout (SHA recorded)"] --> LINT["lint + schema validation (M-08)"]
+        LINT --> UNIT["unit tests (testDebugUnitTest)"]
+        UNIT --> ASM["assemble debug/bench/release"]
+    end
+    subgraph CI["CI (PROPOSED)"]
+        CILINT["lint + schema validation"] --> CIUNIT["unit tests"] --> CIASM["assemble unsigned artifacts"] --> ART["artifact upload + BuildConfig SHA"]
+    end
+    subgraph DEVICE["bench device stages (when device exists — BLOCKED_BY_DEVICE_EVIDENCE now)"]
+        INSTALL["install smoke (T-INSTALL)"] --> PROBES["E-01/E-12 probes"] --> EXP["E-series gates"] --> SOAK["soak"]
+    end
+    subgraph RELEASE["release preparation"]
+        PROM["only PRODUCTION-admitted surfaces in release variant"] --> SIGN["signing boundary — user-owned keystore, external (BUILD_RUNBOOK §9)"]
+    end
+    ASM --> CI --> DEVICE --> RELEASE

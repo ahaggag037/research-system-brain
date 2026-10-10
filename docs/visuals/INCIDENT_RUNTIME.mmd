@@ -1,0 +1,30 @@
+%% INCIDENT_RUNTIME — abnormal operation paths (06 §1f)
+flowchart TB
+    subgraph TRIGGERS["incident triggers"]
+        T1["readback mismatch (FR-06)"]
+        T2["oscillation guard trips (INV-10 / RSK-101)"]
+        T3["energy budget breach (INV-9 / RSK-106)"]
+        T4["helper auth failure burst (RSK-107)"]
+        T5["user kill switch (INV-7)"]
+    end
+
+    subgraph RESPONSE["FX-SAFE incident response"]
+        FREEZE["freeze affected surface(s)"]
+        RESTORE["restore stock snapshots (journaled before-values)"]
+        MODE["SafetyState → DEGRADED or OBSERVATION_ONLY"]
+        ALERT["journal SAFETY entry + FX-UI alert"]
+    end
+
+    subgraph ENDSTATE["end states"]
+        OBSONLY["OBSERVATION_ONLY — observation continues (INV-4)"]
+        QUAR["surface quarantined until re-verified"]
+        NORMAL["NORMAL — auto-resume only after guard-specific cool-down + verification"]
+    end
+
+    T1 --> FREEZE --> RESTORE --> QUAR
+    T2 --> FREEZE --> RESTORE --> MODE --> ALERT --> OBSONLY
+    T3 --> MODE --> OBSONLY
+    T4 --> FREEZE --> ALERT --> OBSONLY
+    T5 --> RESTORE --> MODE --> OBSONLY
+    QUAR -->|"manual re-verify / probe"| NORMAL
+    OBSONLY -->|"user re-enables after review (consent)"| NORMAL

@@ -1,0 +1,20 @@
+%% NORMAL_RUNTIME — steady-state operation (06 §1e)
+stateDiagram-v2
+    [*] --> Observing: app start (STARTUP §1)
+    Observing: region calm/idle · telemetry ≤1 Hz · triggers armed
+    Observing --> TransitionBoost: lifecycle launch/switch event
+    TransitionBoost: CS-1 bounded boost (if admitted) · expiry timer armed
+    TransitionBoost --> Observing: boost expired + readback ok
+    Observing --> PressureRising: PSI some-trigger sustained ≥ dwell
+    PressureRising: continuity intents (CS-3/CS-2 if admitted) · regression guard armed
+    PressureRising --> Observing: pressure subsides (counter-persistence)
+    PressureRising --> PressureCritical: PSI full stalls rising
+    PressureCritical: protective stance only — FixHUA never kills; continuity intents stopped
+    PressureCritical --> PressureRising: pressure easing
+    Observing --> ThermalShaping: thermal trend hot (E-08 lead)
+    ThermalShaping: CS-8 advisory — own boosts off, warming stopped, bg deprio if admitted
+    ThermalShaping --> Observing: trend cooled
+    note right of Observing
+        All transitions journaled.
+        Governor enforces dwell/rate/energy on every edge.
+    end note

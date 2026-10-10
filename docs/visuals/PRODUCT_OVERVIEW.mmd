@@ -1,0 +1,36 @@
+%% PRODUCT_OVERVIEW — the entire product at a glance (06 §1a)
+%% Nodes map to stable IDs; see VISUAL_TRACEABILITY.json
+flowchart TB
+    subgraph USER["User"]
+        U_TAP["taps / switches / multitasks"]
+        U_CONSENT["consent tiers 1-3"]
+        U_KILL["kill switch"]
+    end
+
+    subgraph FIXHUA["FixHUA — ARCH-FX-CP-01 CONTINUUM (adaptive continuity control plane)"]
+        direction LR
+        FXOBS["FX-OBS<br/>telemetry + probes"]
+        FXMODEL["FX-MODEL<br/>state + prediction"]
+        FXPOLICY["FX-POLICY<br/>SLO region engine"]
+        FXSAFE["FX-SAFE<br/>admission · governor · journal"]
+        FXACT["FX-ACT + fxhelperd<br/>whitelist execution"]
+        FXSTORE["FX-STORE<br/>state + schemas"]
+        FXUI["FX-UI<br/>diagnosis · consent · journal"]
+    end
+
+    subgraph DEVICE["Device (Huawei-class Android: EMUI / HarmonyOS ≤4)"]
+        SURF["whitelisted surfaces CS-1..CS-9<br/>uclamp · adj · device_config · vm · io · pagecache · lmkd(exp)"]
+        VENDOR["vendor managers (EMUI) — detected, coexisted, never fought"]
+        THERM["thermal protection — never touched (INV-1)"]
+    end
+
+    U_TAP --> FXOBS
+    FXOBS --> FXMODEL --> FXPOLICY --> FXSAFE --> FXACT --> SURF
+    FXSAFE -. veto/rollback .-> FXACT
+    FXSTORE --- FXOBS
+    FXSTORE --- FXSAFE
+    FXUI --> FXSAFE
+    U_CONSENT --> FXUI
+    U_KILL --> FXUI
+    FXACT -. detect + defer (INV-11) .-> VENDOR
+    THERM -. protected .-> THERM

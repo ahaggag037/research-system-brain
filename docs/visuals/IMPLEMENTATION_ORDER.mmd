@@ -1,0 +1,20 @@
+%% IMPLEMENTATION_ORDER — dependency order of stages/modules (06 §1h)
+flowchart TD
+    M08["M-08 schemas v1"] --> M07["M-07 FX-STORE"]
+    M07 --> M01["M-01 FX-OBS baseline"]
+    M01 --> M06["M-06 FX-UI diagnosis"]
+    M06 --> FB1{"FB-1 Observer<br/>exit criteria (FIRST_BUILD_CRITICAL_PATH)"}
+    FB1 --> M03["M-03 FX-POLICY region engine"]
+    FB1 --> M04["M-04 FX-ACT + fxhelperd"]
+    FB1 --> M05["M-05 FX-SAFE governor (full)"]
+    M03 --> SHADOW["shadow mode (intents logged)"]
+    M04 --> SHADOW
+    M05 --> SHADOW
+    SHADOW --> GATES{"evidence gates<br/>E-02 / E-04 / security review"}
+    GATES --> FB2{"FB-2 canary actuation"}
+    FB2 --> M02["M-02 FX-MODEL prediction armed (E-09 gate)"]
+    FB2 --> CS5678["CS-5/6/7/8 adapters (E-06/07/08 gates)"]
+    M02 --> FB3{"FB-3 daily-usable"}
+    CS5678 --> FB3
+    FB3 --> SOAK["7-day soak → DAILY_USE_READY"]
+    S4["S4 EXPERIMENTAL track (E-11 lmkd canary)"] -. never blocks .-> FB3
