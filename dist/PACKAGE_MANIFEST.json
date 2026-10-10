@@ -1,0 +1,616 @@
+{
+ "package": "FixHUA-Blind-Genesis-V10.3-Clean-Repo-Knowledge-Package",
+ "version": "v1",
+ "architecture_id": "ARCH-FX-CP-01",
+ "architecture_version": "v1 (design; FULLY_SPECIFIED/PROPOSED)",
+ "created_utc": "2026-10-10T09:59:38Z",
+ "source": "github.com/ahaggag037/research-system-brain @ main (package-source SHA recorded in dist/TRANSFER_PACKAGE.md)",
+ "honesty_notes": [
+  "implementation: zero code — all module paths PROPOSED",
+  "device validation: BLOCKED_BY_DEVICE_EVIDENCE (D-015); nothing tested on target hardware",
+  "mission/ is the immutable intake snapshot, not current state (D-001)",
+  ".v10/working_memory/DESIGN_SPACE.md is scratch, noncanonical"
+ ],
+ "files": [
+  {
+   "path": ".v10/state/DESIGN_CONVERGED.md",
+   "purpose": "convergence marker",
+   "status": "current",
+   "canonical": true,
+   "size": 1533,
+   "sha256": "940e70143a78e153a84b253c9ac42a9b41ff89a8c4466ebdc201a626a3398e4f"
+  },
+  {
+   "path": ".v10/state/IMPLEMENTATION_MAP.json",
+   "purpose": "implementation map / RTM chains",
+   "status": "current",
+   "canonical": true,
+   "size": 5586,
+   "sha256": "0880a23345069e408aa74991f3493a6690751ed5706f20da6f7d1b78f45e27f9"
+  },
+  {
+   "path": ".v10/state/KNOWLEDGE_GRAPH.json",
+   "purpose": "knowledge graph",
+   "status": "current",
+   "canonical": true,
+   "size": 27860,
+   "sha256": "f92c39a28b562dd84ef04387522c536e4609b7d1ecf775721565cb1c1b4545a5"
+  },
+  {
+   "path": ".v10/state/PROJECT_STATE.json",
+   "purpose": "current project state (machine-readable)",
+   "status": "current",
+   "canonical": true,
+   "size": 5925,
+   "sha256": "1f319fdc9c37274df1059863a2c84ec5905473716378a96de301912f74f89cba"
+  },
+  {
+   "path": ".v10/working_memory/ACTIVE_NOTES.md",
+   "purpose": "operational notes",
+   "status": "current",
+   "canonical": true,
+   "size": 3621,
+   "sha256": "a3a784f3449ce5d53cff6cff152949e9bc5e929af116ae9e67f85d88f232a975"
+  },
+  {
+   "path": ".v10/working_memory/CHECKPOINT.md",
+   "purpose": "handoff checkpoint",
+   "status": "current",
+   "canonical": true,
+   "size": 6806,
+   "sha256": "40bc993587c7c8d91f4e128fa217cc2a5f53c57786b1c6a428c2251b39bd487f"
+  },
+  {
+   "path": ".v10/working_memory/CONTRADICTION_REGISTER.md",
+   "purpose": "contradiction register (template)",
+   "status": "current",
+   "canonical": true,
+   "size": 441,
+   "sha256": "986e0d2142e9029b08c687813597b75f47a5b232af30d4cedb85cdd89847e249"
+  },
+  {
+   "path": ".v10/working_memory/DECISION_LOG.md",
+   "purpose": "architecture decisions (ADR)",
+   "status": "current",
+   "canonical": true,
+   "size": 15262,
+   "sha256": "965d39e25bb18ac3a6bdaea8113543cb40bdf388b141af060176e8aa8dbd7b17"
+  },
+  {
+   "path": ".v10/working_memory/DESIGN_SPACE.md",
+   "purpose": "design-space scratch (noncanonical)",
+   "status": "current",
+   "canonical": false,
+   "size": 10182,
+   "sha256": "d7b98306553fdf8886e95a15091aeb2e550d1109e3f3b4b2c4f12dbb6c596321"
+  },
+  {
+   "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md",
+   "purpose": "experiment registry E-01..E-12",
+   "status": "current",
+   "canonical": true,
+   "size": 12529,
+   "sha256": "bdd8c6e69be2d2820de90b3f990a0d5d4c6a5ce56e550bbb8c25f79a1f1862d9"
+  },
+  {
+   "path": ".v10/working_memory/REQUIREMENT_LEDGER.md",
+   "purpose": "final Requirement Traceability Matrix (R-001..R-133)",
+   "status": "current",
+   "canonical": true,
+   "size": 41712,
+   "sha256": "3aca8a9f1f6e98dc1c40d45f0e82e5ae5ab8ba67aac48df8569d2f2d2f760502"
+  },
+  {
+   "path": ".v10/working_memory/RISK_REGISTER.md",
+   "purpose": "risk register",
+   "status": "current",
+   "canonical": true,
+   "size": 9589,
+   "sha256": "bd277ce269ca745290d59965ef110dcf201a875a955bbd3f0c3bdba3ae28d105"
+  },
+  {
+   "path": ".v10/working_memory/SOURCE_INDEX.md",
+   "purpose": "source index S-001..S-026",
+   "status": "current",
+   "canonical": true,
+   "size": 22780,
+   "sha256": "3ea1eec18500da50e45324069c3c8511abb0716cf3998f6be62c2fc982b9037f"
+  },
+  {
+   "path": "AGENTS.md",
+   "purpose": "canonical entry file / future-model protocol",
+   "status": "current",
+   "canonical": true,
+   "size": 8196,
+   "sha256": "681eb34a33ba36f9736d65c5061f530052bb073ff7db69c6f968ab1bd9cf9616"
+  },
+  {
+   "path": "README.md",
+   "purpose": "human-facing entry / GitHub handoff",
+   "status": "current",
+   "canonical": false,
+   "size": 1948,
+   "sha256": "cfa6ad50ea0c11a461472c4dfe208a0cece09e03f64bdcb813a8c987b2f62421"
+  },
+  {
+   "path": "audit/COLD_START_VALIDATION.md",
+   "purpose": "cold-start validation evidence",
+   "status": "current",
+   "canonical": true,
+   "size": 6182,
+   "sha256": "3dd498a0efd1799e41aa0f3395536a2b82516c8cdeacb3f7ff9e54b9e599ae88"
+  },
+  {
+   "path": "audit/FINAL_AUDIT_REPORT.md",
+   "purpose": "final audit report (13 audits)",
+   "status": "current",
+   "canonical": true,
+   "size": 17206,
+   "sha256": "69251f0373158febd6529b4ef3ece0f27a1fa303106f1e948ef10087861690eb"
+  },
+  {
+   "path": "audit/FINAL_STATUS_PROOF.md",
+   "purpose": "final status proof (00B §9)",
+   "status": "current",
+   "canonical": true,
+   "size": 3287,
+   "sha256": "467233f4e37163bdade68170182fe30784d7ba1f329850a428da41b9f8871f4c"
+  },
+  {
+   "path": "docs/architecture/ALTERNATIVES.md",
+   "purpose": "rejected architecture alternatives",
+   "status": "current",
+   "canonical": true,
+   "size": 3249,
+   "sha256": "a6b28b8c930999cc762fc0b17e5e6b25a51f269025edff8441c560b7f00ed188"
+  },
+  {
+   "path": "docs/architecture/ARCHITECTURE.md",
+   "purpose": "final architecture",
+   "status": "current",
+   "canonical": true,
+   "size": 8506,
+   "sha256": "edd9402b9764c59ab9446bad1d3c1b576a2ea7fd8bae99aa03c7449ff6bc74b4"
+  },
+  {
+   "path": "docs/architecture/SAFETY_INVARIANTS.md",
+   "purpose": "safety invariants",
+   "status": "current",
+   "canonical": true,
+   "size": 4317,
+   "sha256": "dd22294d4c08b267c9087efe77abc4d8f4560ebaff2bdc526d9a3ec298ace112"
+  },
+  {
+   "path": "docs/components/FX-ACT.md",
+   "purpose": "component contract FX-ACT",
+   "status": "current",
+   "canonical": true,
+   "size": 3443,
+   "sha256": "083a2d91d7b6cda738ce080810d7f9793fc82c2ece7022add1c346707f1337fa"
+  },
+  {
+   "path": "docs/components/FX-MODEL.md",
+   "purpose": "component contract FX-MODEL",
+   "status": "current",
+   "canonical": true,
+   "size": 2638,
+   "sha256": "d6ef82b49f9b9b545adadcda86222767ba1d63d3cfcb686112557c2d19fa29bf"
+  },
+  {
+   "path": "docs/components/FX-OBS.md",
+   "purpose": "component contract FX-OBS",
+   "status": "current",
+   "canonical": true,
+   "size": 3539,
+   "sha256": "2c57640f8f19338288aa5ef736809b86244f8b41ff251cdb75f6a8519a4275af"
+  },
+  {
+   "path": "docs/components/FX-POLICY.md",
+   "purpose": "component contract FX-POLICY",
+   "status": "current",
+   "canonical": true,
+   "size": 2734,
+   "sha256": "4ad07693fa4081ee82c86848c27631ad48e31af3e76f34212aa6896528e15a28"
+  },
+  {
+   "path": "docs/components/FX-SAFE.md",
+   "purpose": "component contract FX-SAFE",
+   "status": "current",
+   "canonical": true,
+   "size": 2820,
+   "sha256": "055c9a2dac8624c13f66d9e7c998d2034c79f82b00358cbc5a9a3cbcca4f45f6"
+  },
+  {
+   "path": "docs/components/FX-STORE.md",
+   "purpose": "component contract FX-STORE",
+   "status": "current",
+   "canonical": true,
+   "size": 2192,
+   "sha256": "6af1711adc7f5869dacef5f9a7bbb8a8e3bea0d6adb0d4cd97d5f5dcb7592719"
+  },
+  {
+   "path": "docs/components/FX-UI.md",
+   "purpose": "component contract FX-UI",
+   "status": "current",
+   "canonical": true,
+   "size": 2422,
+   "sha256": "9131cbb2e6028e21eb1b3c1fe9d39ad51462619c0b2c3f9a8a26a23df38742d0"
+  },
+  {
+   "path": "docs/integration/DATA_STATE_MODEL.md",
+   "purpose": "data/state model",
+   "status": "current",
+   "canonical": true,
+   "size": 5811,
+   "sha256": "dc01d8b6fe45ad34922d68ae3d351a56ec5afccd68d15dd8e21cf983c8b6afc5"
+  },
+  {
+   "path": "docs/integration/INTERFACES.md",
+   "purpose": "interface/integration map",
+   "status": "current",
+   "canonical": true,
+   "size": 6051,
+   "sha256": "c136488d95a534846422c9681b75fb0070f83b79921828c7cb450fe87adfdb30"
+  },
+  {
+   "path": "docs/integration/RUNTIME_TRACES.md",
+   "purpose": "runtime traces / integration proof",
+   "status": "current",
+   "canonical": true,
+   "size": 6903,
+   "sha256": "50f08956c5ef61a6966d4066876d42f694ed4db22df2632764562ff1d7bd26d1"
+  },
+  {
+   "path": "docs/lifecycle/STARTUP_SHUTDOWN.md",
+   "purpose": "startup/shutdown lifecycle",
+   "status": "current",
+   "canonical": true,
+   "size": 4036,
+   "sha256": "565ac92706c0add617e884b2dcedf8d252e1bde717ec949c247b766d50a4adc1"
+  },
+  {
+   "path": "docs/ops/BUILD_RUNBOOK.md",
+   "purpose": "build runbook",
+   "status": "current",
+   "canonical": true,
+   "size": 5119,
+   "sha256": "32f3dbf511ad5147d0860dbc8e79794ad0958a9db4d80633b54a23b98822bf54"
+  },
+  {
+   "path": "docs/ops/FAILURE_RECOVERY_MATRIX.md",
+   "purpose": "failure/recovery matrix",
+   "status": "current",
+   "canonical": true,
+   "size": 4710,
+   "sha256": "9d3fb368b5d684fa15e91364ba00a00b24a4184fef19837f77aae95c962ad6fa"
+  },
+  {
+   "path": "docs/ops/READY_STATES.md",
+   "purpose": "definition-of-ready",
+   "status": "current",
+   "canonical": true,
+   "size": 3107,
+   "sha256": "74251892388d4f5454c2ce53b0f148b77ceb5047d2cd23646e065ed860dee368"
+  },
+  {
+   "path": "docs/ops/TEST_MATRIX.md",
+   "purpose": "test matrix",
+   "status": "current",
+   "canonical": true,
+   "size": 5314,
+   "sha256": "3b9bdf5af6f8f43767f5ca2f0cbc198c55495d478ca617af0af6766380352a28"
+  },
+  {
+   "path": "docs/plan/FAST_BUILD_PLAN.md",
+   "purpose": "fast-build plan",
+   "status": "current",
+   "canonical": true,
+   "size": 3290,
+   "sha256": "2452035a2cae4235b53ea2f6fa5c45be02ce523eee93f821cb869a1413583620"
+  },
+  {
+   "path": "docs/plan/FIRST_BUILD_CRITICAL_PATH.md",
+   "purpose": "first-build critical path",
+   "status": "current",
+   "canonical": true,
+   "size": 3028,
+   "sha256": "8ce48394d9e47e94780fda83681267f90539299f0132a7958757ef0bc4e902d9"
+  },
+  {
+   "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md",
+   "purpose": "implementation blueprint + code/module map",
+   "status": "current",
+   "canonical": true,
+   "size": 10658,
+   "sha256": "667f8ba389a37b5eb12cd60bb970e3a9d3c3739c95e57253c6aa4db03c73f3a8"
+  },
+  {
+   "path": "docs/project/00_START_HERE.md",
+   "purpose": "canonical project entry",
+   "status": "current",
+   "canonical": true,
+   "size": 6451,
+   "sha256": "1f508936ec49744363e7055d3ac52a14b765e86da6df27b9f840785996463e23"
+  },
+  {
+   "path": "docs/project/PROBLEM_MODEL.md",
+   "purpose": "problem model",
+   "status": "current",
+   "canonical": true,
+   "size": 5416,
+   "sha256": "63ac0d1b53c8276350a0a0e8a4b824e0e9c3cfe5cb0794f2e54098d88eb5542b"
+  },
+  {
+   "path": "docs/project/TRUTH_REGISTER.md",
+   "purpose": "truth register",
+   "status": "current",
+   "canonical": true,
+   "size": 6801,
+   "sha256": "906cc77682afc8d35d39356edc52ed94e7779a6d28edf4f91054af077d465386"
+  },
+  {
+   "path": "docs/research/EXPERIMENT_STRATEGY.md",
+   "purpose": "test/experiment strategy",
+   "status": "current",
+   "canonical": true,
+   "size": 2968,
+   "sha256": "8f900769df9047cce90967929a924b3ca0d5e72bac4cc28614ddf74c74278f2a"
+  },
+  {
+   "path": "docs/research/MEASUREMENT_STRATEGY.md",
+   "purpose": "measurement strategy",
+   "status": "current",
+   "canonical": true,
+   "size": 2791,
+   "sha256": "3a126d242b23859332bc2365c36bf58db0900dab08a11e5977cbc16d45d1c4f8"
+  },
+  {
+   "path": "docs/research/REJECTED_IDEAS.md",
+   "purpose": "rejected/deferred idea memory",
+   "status": "current",
+   "canonical": true,
+   "size": 3984,
+   "sha256": "582302a497387907b2b9f3ba4175dbbdf380fc9a724e270cb77cd7577aaa1428"
+  },
+  {
+   "path": "docs/research/RISK_TRANSMUTATION_CATALOG.md",
+   "purpose": "risk-transmutation catalog",
+   "status": "current",
+   "canonical": true,
+   "size": 7111,
+   "sha256": "f395fb973d111c2ba37d907d48b880320560cbc82aec9f7bef705b4cf263083f"
+  },
+  {
+   "path": "docs/visuals/BUILD_RELEASE_FLOW.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 964,
+   "sha256": "be3dc85adb25ab7851c77820a0fe482ce7c7ec7cc7742d0992f96a1321517b3a"
+  },
+  {
+   "path": "docs/visuals/COMPONENT_RELATIONS.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1197,
+   "sha256": "0198ca384b28c2bddaffcd60d478849c2d89f2fc593f26aa6ddc238640061e5b"
+  },
+  {
+   "path": "docs/visuals/FAILURE_RECOVERY.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1112,
+   "sha256": "687c4f39816e41c49cdd0e421089f483990e52f58fc8ce9e883da4271e62d352"
+  },
+  {
+   "path": "docs/visuals/IMPLEMENTATION_ORDER.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 946,
+   "sha256": "665a0798a3ac3870126e5794e6f33df2431537f9e2b4655ab052f61583087ec3"
+  },
+  {
+   "path": "docs/visuals/INCIDENT_RUNTIME.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1232,
+   "sha256": "3413aa97eee76e364f0627d4cc4b773f25c7d468dd4a9f440c5f95c241e25ff2"
+  },
+  {
+   "path": "docs/visuals/NORMAL_RUNTIME.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1183,
+   "sha256": "ba4865d5bb7460eaad995f301d130bd5fc449576bbde7874e51e75ef378f421f"
+  },
+  {
+   "path": "docs/visuals/PRIVILEGE_BOUNDARIES.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1225,
+   "sha256": "83ae9c297835f4238cda848745ccc39daab564bd805e99e63c95fdff09feea58"
+  },
+  {
+   "path": "docs/visuals/PRODUCT_OVERVIEW.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1447,
+   "sha256": "46dc8e49b9c7061c7352807b432747f6006a1b8470105733b25fa351b668dcb1"
+  },
+  {
+   "path": "docs/visuals/RUNTIME_FLOW.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1263,
+   "sha256": "d41f3c92c8855686d2902c30e98032955e957c97977dbab583f7cda22a7fb4cb"
+  },
+  {
+   "path": "docs/visuals/UI_FLOW.mmd",
+   "purpose": "visual twin source (Mermaid)",
+   "status": "current",
+   "canonical": true,
+   "size": 1877,
+   "sha256": "d1cc2025c4252a9b8b872daf11ac285780adb1e5ec892d41af687d9ba0d14758"
+  },
+  {
+   "path": "docs/visuals/VISUAL_TRACEABILITY.json",
+   "purpose": "visual traceability index",
+   "status": "current",
+   "canonical": true,
+   "size": 7135,
+   "sha256": "39e52542f12db8609a4c0824d59621bd55f92a7211ca93671bf86693c5eef35a"
+  },
+  {
+   "path": "mission/ONE_FILE_FALLBACK_README.md",
+   "purpose": "immutable mission intake record",
+   "status": "current",
+   "canonical": false,
+   "size": 433,
+   "sha256": "53861899bdfc6996644af3867919a9523ffe0b12dac354328b19672cedb72b1f"
+  },
+  {
+   "path": "mission/PACKAGE_MANIFEST.json",
+   "purpose": "immutable mission intake record",
+   "status": "current",
+   "canonical": false,
+   "size": 7925,
+   "sha256": "6ba6750bced1759df93dfda50add09851d8d8443bcbcdf7c17265a7925549347"
+  },
+  {
+   "path": "mission/SHA256SUMS.txt",
+   "purpose": "immutable mission intake record",
+   "status": "current",
+   "canonical": false,
+   "size": 2670,
+   "sha256": "4c1e64391e5b8c1fd9208792492070337e9c0a2e0644fffef0e1adc91e34f11e"
+  },
+  {
+   "path": "mission/START_HERE_FOR_USER.md",
+   "purpose": "immutable mission intake record",
+   "status": "current",
+   "canonical": false,
+   "size": 1774,
+   "sha256": "28ea606b467fad6f9ec12287f9120a1b8e27c436c2a9ab7f94a2f736814b7f0d"
+  },
+  {
+   "path": "mission/model/00A_SINGLE_SESSION_CONTRACT.md",
+   "purpose": "immutable mission contract 00A_SINGLE_SESSION_CONTRACT.md",
+   "status": "current",
+   "canonical": false,
+   "size": 4843,
+   "sha256": "1930e1faeb51ccab805194d216aa626660f7b5fcbda3c5c01c43ca139076a597"
+  },
+  {
+   "path": "mission/model/00B_CLEAN_REPOSITORY_BOUNDARY.md",
+   "purpose": "immutable mission contract 00B_CLEAN_REPOSITORY_BOUNDARY.md",
+   "status": "current",
+   "canonical": false,
+   "size": 5222,
+   "sha256": "9add5568022864b57496ac187ddbc21bdf0d24f14468367bb624d92ce5119e84"
+  },
+  {
+   "path": "mission/model/00_CONTROL_PLANE.md",
+   "purpose": "immutable mission contract 00_CONTROL_PLANE.md",
+   "status": "current",
+   "canonical": false,
+   "size": 4604,
+   "sha256": "4bde0884827d1d34ae1154e1e849467f5b62e378868a81834208afba6958b03d"
+  },
+  {
+   "path": "mission/model/01_ENGINEERING_CONSTITUTION.md",
+   "purpose": "immutable mission contract 01_ENGINEERING_CONSTITUTION.md",
+   "status": "current",
+   "canonical": false,
+   "size": 4341,
+   "sha256": "19194abfddffce1f23555fbfc27c09a5119b25869e3411ee888b3d57dddc1820"
+  },
+  {
+   "path": "mission/model/02_DISCOVERY_PROTOCOL.md",
+   "purpose": "immutable mission contract 02_DISCOVERY_PROTOCOL.md",
+   "status": "current",
+   "canonical": false,
+   "size": 5087,
+   "sha256": "88f6ee8aa19a53e02531b5c7bee226b8f9870822bf4ce8af771890dfdba0d598"
+  },
+  {
+   "path": "mission/model/03_WORKING_MEMORY_PROTOCOL.md",
+   "purpose": "immutable mission contract 03_WORKING_MEMORY_PROTOCOL.md",
+   "status": "current",
+   "canonical": false,
+   "size": 3478,
+   "sha256": "62b5e84c4b479d0952d0d9c20df6b9f3ac8a4a51b7206f34b6d61966ddc492e3"
+  },
+  {
+   "path": "mission/model/04_COMPLIANCE_SHELL.md",
+   "purpose": "immutable mission contract 04_COMPLIANCE_SHELL.md",
+   "status": "current",
+   "canonical": false,
+   "size": 3166,
+   "sha256": "63389fa6f371d2f6b43d5b448c1ac917c84e1268814f517436418e55fc2e03ba"
+  },
+  {
+   "path": "mission/model/05A_IMPLEMENTATION_COMPLETENESS_CONTRACT.md",
+   "purpose": "immutable mission contract 05A_IMPLEMENTATION_COMPLETENESS_CONTRACT.md",
+   "status": "current",
+   "canonical": false,
+   "size": 6722,
+   "sha256": "e0358e29e80305c1586968848017cd1470bef8859de90a1c509200401284d22c"
+  },
+  {
+   "path": "mission/model/05B_GITHUB_CONTINUITY_CONTRACT.md",
+   "purpose": "immutable mission contract 05B_GITHUB_CONTINUITY_CONTRACT.md",
+   "status": "current",
+   "canonical": false,
+   "size": 4541,
+   "sha256": "e6abe5c659e173f92ab78a60d1a0ec06377310693c5ffce67a201c0b9cd904d9"
+  },
+  {
+   "path": "mission/model/05_KNOWLEDGE_PACKAGE_CONTRACT.md",
+   "purpose": "immutable mission contract 05_KNOWLEDGE_PACKAGE_CONTRACT.md",
+   "status": "current",
+   "canonical": false,
+   "size": 4808,
+   "sha256": "14fd78326e5e58095f8215c3448741d27dd34543c39c3f3fab6b609414017a32"
+  },
+  {
+   "path": "mission/model/06_VISUAL_TWIN_CONTRACT.md",
+   "purpose": "immutable mission contract 06_VISUAL_TWIN_CONTRACT.md",
+   "status": "current",
+   "canonical": false,
+   "size": 1845,
+   "sha256": "f746c40a9de772c1e4847b6056e4b63b95f247f01a63d809c042b7bc313dae47"
+  },
+  {
+   "path": "mission/model/07_FINAL_AUDIT_PROTOCOL.md",
+   "purpose": "immutable mission contract 07_FINAL_AUDIT_PROTOCOL.md",
+   "status": "current",
+   "canonical": false,
+   "size": 4216,
+   "sha256": "6e88cb2a39ff4045bb7a14e598ef18d77693233d332fccc24a855c2b6e4ddb52"
+  },
+  {
+   "path": "mission/model/08_TRANSFER_PACKAGE_SPEC.md",
+   "purpose": "immutable mission contract 08_TRANSFER_PACKAGE_SPEC.md",
+   "status": "current",
+   "canonical": false,
+   "size": 2141,
+   "sha256": "9f666d3c69091f525f80d04ad4a556d5e99acf5c166c92bc189dd7b51f553b3d"
+  },
+  {
+   "path": "mission/model/09_OPTIONAL_STUCKNESS_TOOLKIT.md",
+   "purpose": "immutable mission contract 09_OPTIONAL_STUCKNESS_TOOLKIT.md",
+   "status": "current",
+   "canonical": false,
+   "size": 1209,
+   "sha256": "035c3e35f734b9549745e490d211969ba51dd91a61b507ce7ec5f1a34b424e32"
+  }
+ ]
+}
