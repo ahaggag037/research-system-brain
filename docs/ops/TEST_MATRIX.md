@@ -12,8 +12,11 @@
 | Requirement chain | Test ID | Class | Test | Expected result | Evidence state |
 |---|---|---|---|---|---|
 | G1 ← D-006/D-007 ← CS-1 uclamp boost ← FX-ACT/POLICY | T-E02 | DEVICE+PERFORMANCE | E-02 A/B launch latency harness | ≥10% median launch latency ↓, no freq overshoot after cap | harness READY (device needed) |
+| G3/G4 ← D-013 ← CS-2 adj nudge ← FX-ACT | T-E03 | DEVICE | E-03 overwrite-behavior probe | overwrite only at AMS recompute events; nudge effective between events | harness READY (device needed) |
 | G3/G4 ← D-013 ← CS-3 max_cached_processes ← FX-ACT | T-E04 | DEVICE | E-04 N-app cycle reload ratio | reloads ↓ ≥25% at +8 with PSI stall unchanged | harness READY |
 | G5 ← CS-4 freezer alignment ← FX-ACT | T-E05 | DEVICE | E-05 frozen vs non-frozen resume | frozen ≪ cold start; informs keep-warm sizing | harness READY |
+| G2 ← D-006 ← CS-5 vm operating regions ← FX-ACT | T-E06 | DEVICE+PERFORMANCE | E-06 per-setting pressure runs (swappiness/extra_free_kbytes/watermark regions) | measurable allocstall ↓ at fixed workload vs stock | harness READY (device needed) |
+| G2 ← D-006 ← CS-6 background I/O deprio ← FX-ACT | T-E07 | DEVICE | E-07 background-storm + foreground scroll/launch | jank spikes during background storm ↓ measurably | harness READY (device needed) |
 | H-01 ← PSI triggers ← FX-OBS | T-E01 | DEVICE | E-01 trigger fidelity vs allocstall | trigger precedes allocstall spike ≥100 ms moderate ramp | harness READY |
 | INV-8 telemetry budget ← FX-OBS | T-E10 | DEVICE+PERFORMANCE | E-10 24 h overhead | <1% avg CPU; ~0 wakelocks | harness READY |
 | H-05 ← thermal trend ← FX-OBS/MODEL | T-E08 | DEVICE | E-08 lead-time runs | ≥10 s consistent lead, else CS-8 demotion | harness READY |
