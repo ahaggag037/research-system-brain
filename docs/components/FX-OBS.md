@@ -16,7 +16,7 @@
 - **Postconditions:** events delivered at ≤1 Hz steady rate with burst-on-trigger; probe matrix persisted; overhead within budget (INV-8).
 - **Invariants:** never writes any control surface; never holds a wakelock for steady-state sampling; PSI trigger windows within kernel-allowed 500 ms–10 s (S-007); Perfetto never auto-started in production mode.
 - **Side effects:** negligible by design (E-10 gate); diagnostic Perfetto sessions are user-initiated and time-boxed.
-- **Dependencies:** FX-STORE (registry persistence); Android framework APIs; kernel PSI/cgroup availability (capability-gated).
+- **Dependencies:** FX-STORE (registry persistence); Android framework APIs; kernel PSI/cgroup availability (capability-gated). Freeze-state signal: Android 16+ `IBinder.FrozenStateChangeCallback` where kernel binder supports it (S-025), else trace-inferred. Reclaim-engine detection (classic LRU vs MGLRU) via `/sys/kernel/mm/lru_gen/*` per D-016.
 - **Failure behavior:** a failing collector degrades that signal class to UNKNOWN (MODEL treats as missing input, never guesses); collector crash isolated per collector.
 - **Recovery behavior:** supervisor restarts failed collector with backoff; persistent failure → signal marked BLOCKED in capability registry; UI shows degraded badge.
 - **Concurrency assumptions:** collectors on dedicated serial executors; event bus is single-threaded ordered; no shared mutable state outside STORE.

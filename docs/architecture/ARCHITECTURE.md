@@ -41,7 +41,7 @@ Damage concentrates at **transitions and contention spikes**; stock control is r
 | CS-2 | `oom_score_adj` timed nudges on cached set | S-002 | gated by E-03 | tolerate AMS overwrite |
 | CS-3 | `device_config activity_manager max_cached_processes` | S-013 | PRODUCTION after E-04 | documented override |
 | CS-4 | `device_config activity_manager use_freezer` policy alignment | S-013 | PRODUCTION after E-05 | documented override |
-| CS-5 | vm tunables operating regions (swappiness, extra_free_kbytes, watermark_scale_factor) | S-017/S-018 | PRODUCTION after E-06 | region table, not magic values |
+| CS-5 | vm tunables operating regions (swappiness, extra_free_kbytes, watermark_scale_factor) | S-017/S-018 | PRODUCTION after E-06 | region table, not magic values; **per-reclaim-engine regions** — classic LRU vs MGLRU (default on android14+ GKI, S-022); engine detected by capability probe (D-016) |
 | CS-6 | background I/O deprioritization (ionice / io cgroup weight) | S-008 | PRODUCTION after E-07 | scheduling only, no data risk |
 | CS-7 | page-cache warm for predicted next app | S-015/S-016 | PRODUCTION after E-09 | bounded size; idle-only |
 | CS-8 | advisory load shaping before thermal throttle | S-005 | PRODUCTION after E-08 | never touches thermal config (INV-1) |
