@@ -1,0 +1,59 @@
+{
+  "schema": "visual_traceability.v1",
+  "purpose": "06 §3: visual node → component/mechanism → canonical document → implementation unit → tests/status",
+  "diagrams": {
+    "PRODUCT_OVERVIEW.mmd": {
+      "nodes": {
+        "FXOBS": {"entity": "FX-OBS", "doc": "docs/components/FX-OBS.md", "impl": "M-01 app/obs/", "tests": ["T-E01","T-E10","T-E12"], "status": "FULLY_SPECIFIED"},
+        "FXMODEL": {"entity": "FX-MODEL", "doc": "docs/components/FX-MODEL.md", "impl": "M-02 app/model/", "tests": ["T-E09"], "status": "FULLY_SPECIFIED"},
+        "FXPOLICY": {"entity": "FX-POLICY", "doc": "docs/components/FX-POLICY.md", "impl": "M-03 app/policy/", "tests": ["T-REGION","T-REPLAY"], "status": "FULLY_SPECIFIED"},
+        "FXSAFE": {"entity": "FX-SAFE", "doc": "docs/components/FX-SAFE.md", "impl": "M-05 app/safe/", "tests": ["T-OSC","T-ENERGY","T-JOURNAL"], "status": "FULLY_SPECIFIED"},
+        "FXACT": {"entity": "FX-ACT", "doc": "docs/components/FX-ACT.md", "impl": "M-04 app/act/ + helper/", "tests": ["T-SCHEMA","T-AUTH","T-PARTIAL"], "status": "FULLY_SPECIFIED"},
+        "FXSTORE": {"entity": "FX-STORE", "doc": "docs/components/FX-STORE.md", "impl": "M-07 app/store/", "tests": ["T-CORRUPT"], "status": "FULLY_SPECIFIED"},
+        "FXUI": {"entity": "FX-UI", "doc": "docs/components/FX-UI.md", "impl": "M-06 app/ui/", "tests": ["T-CONSENT"], "status": "FULLY_SPECIFIED"},
+        "SURF": {"entity": "CS-1..CS-9 control surfaces", "doc": "docs/architecture/ARCHITECTURE.md §3", "impl": "helper adapters (M-04)", "tests": ["T-E01..T-E11 mapped per surface"], "status": "FULLY_SPECIFIED / admission UNKNOWN pending device"},
+        "VENDOR": {"entity": "vendor coexistence (D-013)", "doc": "docs/architecture/ALTERNATIVES.md + ARCHITECTURE.md §4", "impl": "M-01 vendor detector", "tests": ["T-E12"], "status": "FULLY_SPECIFIED"},
+        "THERM": {"entity": "INV-1 thermal protection", "doc": "docs/architecture/SAFETY_INVARIANTS.md", "impl": "none (by construction)", "tests": ["static review gate"], "status": "CLOSED-BY-INVARIANT"}
+      }
+    },
+    "COMPONENT_RELATIONS.mmd": {
+      "nodes": {
+        "FXOBS": {"entity": "FX-OBS", "doc": "docs/components/FX-OBS.md", "impl": "M-01", "tests": ["T-E01","T-E10","T-E12"], "status": "FULLY_SPECIFIED"},
+        "FXMODEL": {"entity": "FX-MODEL", "doc": "docs/components/FX-MODEL.md", "impl": "M-02", "tests": ["T-E09"], "status": "FULLY_SPECIFIED"},
+        "FXPOLICY": {"entity": "FX-POLICY", "doc": "docs/components/FX-POLICY.md", "impl": "M-03", "tests": ["T-REGION","T-REPLAY"], "status": "FULLY_SPECIFIED"},
+        "FXACTC": {"entity": "FX-ACT client", "doc": "docs/components/FX-ACT.md", "impl": "M-04 app/act/", "tests": ["T-SCHEMA","T-AUTH"], "status": "FULLY_SPECIFIED"},
+        "HELPER": {"entity": "fxhelperd", "doc": "docs/components/FX-ACT.md", "impl": "M-04 helper/", "tests": ["T-AUTH","T-PARTIAL"], "status": "FULLY_SPECIFIED"},
+        "FXSAFE": {"entity": "FX-SAFE", "doc": "docs/components/FX-SAFE.md", "impl": "M-05", "tests": ["T-OSC","T-JOURNAL"], "status": "FULLY_SPECIFIED"},
+        "FXUI": {"entity": "FX-UI", "doc": "docs/components/FX-UI.md", "impl": "M-06", "tests": ["T-CONSENT"], "status": "FULLY_SPECIFIED"},
+        "FXSTORE": {"entity": "FX-STORE", "doc": "docs/components/FX-STORE.md", "impl": "M-07", "tests": ["T-CORRUPT"], "status": "FULLY_SPECIFIED"},
+        "SCHEMAS": {"entity": "shared schemas", "doc": "docs/integration/INTERFACES.md", "impl": "M-08 schemas/", "tests": ["schema CI validation"], "status": "FULLY_SPECIFIED"},
+        "BENCH": {"entity": "experiment harness", "doc": "docs/research/EXPERIMENT_STRATEGY.md", "impl": "M-09 bench/", "tests": ["self-check scripts"], "status": "FULLY_SPECIFIED"}
+      },
+      "edges": {
+        "IF-01": {"doc": "docs/integration/INTERFACES.md", "status": "FULLY_SPECIFIED"},
+        "IF-02": {"doc": "docs/integration/INTERFACES.md", "status": "FULLY_SPECIFIED"},
+        "IF-03": {"doc": "docs/integration/INTERFACES.md", "status": "FULLY_SPECIFIED"},
+        "IF-04": {"doc": "docs/integration/INTERFACES.md", "status": "FULLY_SPECIFIED"},
+        "IF-05": {"doc": "docs/integration/INTERFACES.md", "status": "FULLY_SPECIFIED"},
+        "IF-07": {"doc": "docs/integration/INTERFACES.md", "status": "FULLY_SPECIFIED"}
+      }
+    },
+    "RUNTIME_FLOW.mmd": {"nodes": {"loop": {"entity": "normal control loop", "doc": "docs/integration/RUNTIME_TRACES.md TRACE-1..3", "impl": "M-01..M-05", "tests": ["T-REPLAY"], "status": "FULLY_SPECIFIED"}}},
+    "PRIVILEGE_BOUNDARIES.mmd": {"nodes": {
+      "SOCK": {"entity": "IF-05 helper socket", "doc": "docs/integration/INTERFACES.md IF-05; docs/architecture/SAFETY_INVARIANTS.md INV-3", "impl": "M-04", "tests": ["T-AUTH","T-SCHEMA"], "status": "FULLY_SPECIFIED"},
+      "DCFG": {"entity": "CS-3/CS-4 device_config", "doc": "docs/architecture/ARCHITECTURE.md §3", "impl": "M-04 client", "tests": ["T-E04","T-E05"], "status": "FULLY_SPECIFIED"},
+      "THERM": {"entity": "INV-1", "doc": "docs/architecture/SAFETY_INVARIANTS.md", "impl": "none", "tests": ["static review"], "status": "CLOSED-BY-INVARIANT"},
+      "SHELL": {"entity": "INV-3", "doc": "docs/architecture/SAFETY_INVARIANTS.md", "impl": "none", "tests": ["T-SCHEMA negative tests"], "status": "CLOSED-BY-INVARIANT"}
+    }},
+    "NORMAL_RUNTIME.mmd": {"nodes": {"states": {"entity": "region engine states", "doc": "docs/architecture/ARCHITECTURE.md §4; RUNTIME_TRACES.md", "impl": "M-03", "tests": ["T-REGION"], "status": "FULLY_SPECIFIED"}}},
+    "INCIDENT_RUNTIME.mmd": {"nodes": {"response": {"entity": "FX-SAFE incident response", "doc": "docs/ops/FAILURE_RECOVERY_MATRIX.md; RUNTIME_TRACES.md TRACE-4", "impl": "M-05", "tests": ["T-OSC","T-ENERGY"], "status": "FULLY_SPECIFIED"}}},
+    "FAILURE_RECOVERY.mmd": {"nodes": {"classes": {"entity": "FR-01..FR-13", "doc": "docs/ops/FAILURE_RECOVERY_MATRIX.md", "impl": "M-04/M-05/M-07", "tests": ["T-CORRUPT","T-PARTIAL","T-OSC"], "status": "FULLY_SPECIFIED"}}},
+    "IMPLEMENTATION_ORDER.mmd": {"nodes": {"stages": {"entity": "S1..S4 / FB-1..FB-3", "doc": "docs/plan/IMPLEMENTATION_BLUEPRINT.md §B; docs/plan/FAST_BUILD_PLAN.md", "impl": "M-01..M-09", "tests": ["per-stage test obligations"], "status": "FULLY_SPECIFIED"}}},
+    "BUILD_RELEASE_FLOW.mmd": {"nodes": {"pipeline": {"entity": "build/release path", "doc": "docs/ops/BUILD_RUNBOOK.md", "impl": "CI config (future)", "tests": ["T-BUILD","T-INSTALL"], "status": "FULLY_SPECIFIED"}}},
+    "UI_FLOW.mmd": {"nodes": {
+      "screens": {"entity": "FX-UI screens", "doc": "docs/components/FX-UI.md", "impl": "M-06", "tests": ["T-CONSENT"], "status": "FULLY_SPECIFIED"},
+      "decisions": {"entity": "consent tiers / kill switch", "doc": "docs/architecture/SAFETY_INVARIANTS.md INV-7", "impl": "M-06 + M-05", "tests": ["T-CONSENT"], "status": "FULLY_SPECIFIED"}
+    }}
+  },
+  "consistency_rules": "06 §4: every important visual node maps to a stable entity ID here; names/IDs match component contracts; privilege boundaries match SAFETY_INVARIANTS; flows match RUNTIME_TRACES; failure flows match FAILURE_RECOVERY_MATRIX. Verified by STATE D audit A-05."
+}

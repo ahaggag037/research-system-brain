@@ -1,8 +1,11 @@
 {
-  "project_phase": "STATE B complete — DESIGN_CONVERGED; entering STATE C (KNOWLEDGE PACKAGING)",
+  "project_phase": "STATE C complete — knowledge package published; entering STATE D (FINAL AUDIT)",
   "architecture_id": "ARCH-FX-CP-01",
   "architecture_codename": "CONTINUUM",
   "truth_states": {
+    "architecture": "FULLY_SPECIFIED (PROPOSED — no code exists)",
+    "implementation": "FULLY_SPECIFIED at documentation level; 0 components implemented",
+    "device_validation": "BLOCKED_BY_DEVICE_EVIDENCE (D-015)",
     "F-001_repo_facts": "VERIFIED_FACT",
     "F-002_api_write_available": "VERIFIED_FACT",
     "F-003_package_integrity": "VERIFIED_FACT",
@@ -16,28 +19,33 @@
     "F-011_emui_background_policy": "VERIFIED_FACT",
     "F-012_prediction_feasibility": "VERIFIED_FACT",
     "F-013_vm_tunables": "VERIFIED_FACT",
-    "H-01_psi_early_warning": "HYPOTHESIS",
-    "H-02_uclamp_launch_boost": "HYPOTHESIS",
-    "H-03_adj_nudge_persistence": "HYPOTHESIS",
-    "H-04_max_cached_continuity": "HYPOTHESIS",
-    "H-05_thermal_lead_time": "HYPOTHESIS",
-    "H-06_prediction_accuracy": "HYPOTHESIS",
-    "H-07_obs_overhead_budget": "HYPOTHESIS",
-    "architecture": "PROPOSED",
-    "product_category": "IMPLEMENTED_AS_DECISION: adaptive continuity control plane (D-006)"
+    "F-014_perfetto_weight": "VERIFIED_FACT",
+    "F-015_buckets_phantom": "VERIFIED_FACT",
+    "H-01_psi_early_warning": "HYPOTHESIS (gate E-01)",
+    "H-02_uclamp_launch_boost": "HYPOTHESIS (gate E-02)",
+    "H-03_adj_nudge_persistence": "HYPOTHESIS (gate E-03)",
+    "H-04_max_cached_continuity": "HYPOTHESIS (gate E-04)",
+    "H-05_thermal_lead_time": "HYPOTHESIS (gate E-08)",
+    "H-06_prediction_accuracy": "HYPOTHESIS (gate E-09)",
+    "H-07_obs_overhead_budget": "HYPOTHESIS (gate E-10)"
   },
   "implemented_components": [],
   "proposed_components": ["FX-OBS", "FX-MODEL", "FX-POLICY", "FX-ACT", "FX-SAFE", "FX-UI", "FX-STORE"],
+  "control_surfaces": {
+    "CS-1_uclamp_boost": "FULLY_SPECIFIED; admission gate E-02",
+    "CS-2_adj_nudge": "FULLY_SPECIFIED; gate E-03",
+    "CS-3_max_cached": "FULLY_SPECIFIED; gate E-04",
+    "CS-4_freezer_align": "FULLY_SPECIFIED; gate E-05",
+    "CS-5_vm_regions": "FULLY_SPECIFIED; gate E-06",
+    "CS-6_io_deprio": "FULLY_SPECIFIED; gate E-07",
+    "CS-7_pagecache_warm": "FULLY_SPECIFIED; gate E-09",
+    "CS-8_thermal_advisory": "FULLY_SPECIFIED; gate E-08",
+    "CS-9_lmkd_retune": "RESEARCH-ONLY; EXPERIMENTAL gate E-11",
+    "CS-10_vendor_guidance": "FULLY_SPECIFIED; detection gate E-12"
+  },
   "verified_facts": [
     "F-001: repo facts (ahaggag037/research-system-brain, main, public)",
-    "F-006: lmkd ro.lmk.* tuning surface (S-002/S-003)",
-    "F-007: uclamp task/cgroup control semantics (S-004)",
-    "F-008: PSI trigger mechanics (S-007)",
-    "F-009: cached-app freezer behavior + device_config levers (S-013)",
-    "F-010: ART GC profile + FrameTimeline jank taxonomy (S-006/S-008)",
-    "F-011: EMUI layered background policy; HarmonyOS NEXT not Android (S-010/S-020)",
-    "F-012: ADPF hint sessions; APPM next-app prediction feasibility (S-011/S-015)",
-    "F-013: extra_free_kbytes purpose; swappiness semantics with zram (S-017/S-018)"
+    "F-006..F-015 platform mechanism facts with sources S-002..S-021 (canonical list: docs/project/TRUTH_REGISTER.md §3)"
   ],
   "critical_unknowns": [
     "U-003: per-device control writability/ownership (gates: E-01,E-03,E-12)",
@@ -46,12 +54,31 @@
     "U-006: thermal headroom predictability (gate: E-08)",
     "U-007: predictor accuracy on real usage (gate: E-09)"
   ],
-  "active_risks": ["RSK-001 (mitigated)", "RSK-002 (standing)", "RSK-101", "RSK-102 (gated experimental)", "RSK-103", "RSK-104", "RSK-105", "RSK-106", "RSK-107", "RSK-108 (closed-by-invariant)", "RSK-109", "RSK-110"],
+  "active_risks": ["RSK-002 (standing, zero events)", "RSK-101", "RSK-102 (gated experimental)", "RSK-103", "RSK-104", "RSK-105", "RSK-106", "RSK-107", "RSK-108 (closed-by-invariant)", "RSK-109", "RSK-110", "RSK-001 (mitigated)"],
   "blocked_requirements": [],
-  "build_state": "not_started — FB-1 critical path defined in STATE C",
-  "test_state": "device experiments E-01..E-12 READY/PROPOSED; none run (no device in environment)",
-  "next_milestone": "STATE C: extend ledger with packaging requirements; produce docs/ knowledge package + visual twin; CP-003",
-  "checkpoint": "CP-002",
-  "ledger_range": "R-001..R-064 (+ STATE C extension pending)",
+  "build_state": "not_started — FB-1 critical path: docs/plan/FIRST_BUILD_CRITICAL_PATH.md (≈6–9 h to installable)",
+  "test_state": "E-01..E-12 harness plans READY/PROPOSED; unit/integration suites PLANNED; nothing executed (no device, no code)",
+  "ready_states": {
+    "ARCHITECTURE_READY": true,
+    "IMPLEMENTATION_READY_docs": true,
+    "BUILD_READY": false,
+    "DEVICE_TEST_READY": "BLOCKED_BY_DEVICE_EVIDENCE",
+    "DAILY_USE_READY": "BLOCKED_BY_DEVICE_EVIDENCE",
+    "RELEASE_READY": "BLOCKED_BY_DEVICE_EVIDENCE + signing boundary external"
+  },
+  "knowledge_package": {
+    "entry": "docs/project/00_START_HERE.md",
+    "components": "docs/components/FX-*.md (7 contracts)",
+    "integration": "docs/integration/{INTERFACES,DATA_STATE_MODEL,RUNTIME_TRACES}.md",
+    "lifecycle": "docs/lifecycle/STARTUP_SHUTDOWN.md",
+    "ops": "docs/ops/{BUILD_RUNBOOK,FAILURE_RECOVERY_MATRIX,TEST_MATRIX,READY_STATES}.md",
+    "plan": "docs/plan/{IMPLEMENTATION_BLUEPRINT,FIRST_BUILD_CRITICAL_PATH,FAST_BUILD_PLAN}.md",
+    "research": "docs/research/{EXPERIMENT_STRATEGY,MEASUREMENT_STRATEGY,RISK_TRANSMUTATION_CATALOG,REJECTED_IDEAS}.md",
+    "visuals": "docs/visuals/*.mmd (10) + VISUAL_TRACEABILITY.json",
+    "machine_maps": [".v10/state/PROJECT_STATE.json", ".v10/state/KNOWLEDGE_GRAPH.json", ".v10/state/IMPLEMENTATION_MAP.json", "docs/visuals/VISUAL_TRACEABILITY.json"]
+  },
+  "next_milestone": "STATE D: 13-audit final audit (07), repair/re-audit loop, GitHub cold-start validation, final transfer ZIP (08)",
+  "checkpoint": "CP-003",
+  "ledger_range": "R-001..R-114",
   "last_updated": "2026-10-10"
 }
