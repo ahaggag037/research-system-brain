@@ -1,5 +1,5 @@
 {
-  "project_phase": "STATE C complete — knowledge package published; entering STATE D (FINAL AUDIT)",
+  "project_phase": "STATE C complete — knowledge package published; STATE D (FINAL AUDIT) in progress; CP-004 recovery complete",
   "architecture_id": "ARCH-FX-CP-01",
   "architecture_codename": "CONTINUUM",
   "truth_states": {
@@ -57,7 +57,7 @@
   "active_risks": ["RSK-002 (standing, zero events)", "RSK-101", "RSK-102 (gated experimental)", "RSK-103", "RSK-104", "RSK-105", "RSK-106", "RSK-107", "RSK-108 (closed-by-invariant)", "RSK-109", "RSK-110", "RSK-001 (mitigated)"],
   "blocked_requirements": [],
   "build_state": "not_started — FB-1 critical path: docs/plan/FIRST_BUILD_CRITICAL_PATH.md (≈6–9 h to installable)",
-  "test_state": "E-01..E-12 harness plans READY/PROPOSED; unit/integration suites PLANNED; nothing executed (no device, no code)",
+  "test_state": "E-01..E-12 harness plans READY/PROPOSED; TEST_MATRIX rows T-E01..T-E12 complete (CP-004 recovery); unit/integration suites PLANNED; nothing executed (no device, no code)",
   "ready_states": {
     "ARCHITECTURE_READY": true,
     "IMPLEMENTATION_READY_docs": true,
@@ -78,7 +78,8 @@
     "machine_maps": [".v10/state/PROJECT_STATE.json", ".v10/state/KNOWLEDGE_GRAPH.json", ".v10/state/IMPLEMENTATION_MAP.json", "docs/visuals/VISUAL_TRACEABILITY.json"]
   },
   "next_milestone": "STATE D: 13-audit final audit (07), repair/re-audit loop, GitHub cold-start validation, final transfer ZIP (08)",
-  "checkpoint": "CP-003",
+  "checkpoint": "CP-004",
   "ledger_range": "R-001..R-114",
-  "last_updated": "2026-10-10"
+  "last_updated": "2026-10-10",
+  "recovery_note": "CP-004: session-interruption recovery complete; docs/ops/TEST_MATRIX.md rows T-E03/T-E06/T-E07 recovered from prior sandbox bundle after independent semantic verification; all other bundle files identical to canonical main"
 }

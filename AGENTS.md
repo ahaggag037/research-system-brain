@@ -57,7 +57,7 @@ The mission contract is immutable and lives in `mission/model/`. The state machi
 
 ## Current state (updated each checkpoint — verify against files above)
 
-- Checkpoint: **CP-003** (STATE C complete — knowledge package published).
+- Checkpoint: **CP-004** (STATE C complete — knowledge package published; interrupted-session recovery complete: TEST_MATRIX T-E03/T-E06/T-E07 restored).
 - Mission state: **STATE D (Final Audit)** — contracts `mission/model/07_FINAL_AUDIT_PROTOCOL.md`, `08_TRANSFER_PACKAGE_SPEC.md` are now active.
 - Architecture: **ARCH-FX-CP-01 "CONTINUUM"** — adaptive continuity control plane (D-006/D-007). Components: FX-OBS, FX-MODEL, FX-POLICY, FX-ACT, FX-SAFE, FX-UI, FX-STORE.
 - Implementation: **FULLY_SPECIFIED (docs); zero code** — no component is IMPLEMENTED; device validation BLOCKED_BY_DEVICE_EVIDENCE (D-015; experiments E-01..E-12 ready).
