@@ -87,3 +87,127 @@ RISKS: Minor anchoring risk from packaging contracts; mitigated by explicit iner
 REOPEN_IF: User revokes directive or control plane reinterpretation required.
 SUPERSEDES: —
 SUPERSEDED_BY: —
+
+## D-006 — Product category: adaptive continuity control plane
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 6 (STATE B)
+CONTEXT: R-005 forbids assuming category. Problem decomposition (DESIGN_SPACE §1) shows four failure families rooted in reactive, per-resource, uncoordinated stock control at transitions/contention spikes.
+OPTIONS: booster/cleaner app; static tuning pack; diagnostic-only tool; kernel mod; adaptive control plane.
+DECISION: FixHUA = adaptive continuity control plane: OBS→MODEL→POLICY→ACT under SAFE, with consent UI. Diagnosis is the first deliverable (FB-1), not the whole product.
+EVIDENCE: DESIGN_SPACE §1–§2; S-002..S-021 mechanism base; S-011 (platform itself validates hint-adaptive model).
+ASSUMPTIONS: Root available on target (mission-granted when justified); device observation gates all device-specifics.
+CONSEQUENCES: Component model FX-OBS/MODEL/POLICY/ACT/SAFE/UI/STORE; success = user-visible SLOs only.
+RISKS: RSK-101..110 tracked.
+REOPEN_IF: E-01/E-02 falsify core levers AND no substitute levers exist.
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-007 — Architecture selection: ARCH-FX-CP-01 over A/C/D/E
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 7 (STATE B)
+CONTEXT: 02 §9 challenger rule.
+OPTIONS: ARCH-A static pack (rejected: mission anti-goal); ARCH-C kernel module (rejected v1: rollback/integrity/hours); ARCH-D app-only (kept as degraded mode); ARCH-E ROM mod (rejected: not installable on stock); ARCH-B userspace control plane.
+DECISION: ARCH-B refined → ARCH-FX-CP-01 "CONTINUUM": OBS (telemetry) / MODEL (state+prediction) / POLICY (decision engine) / ACT (whitelist adapters) / SAFE (admission+governor) / UI (consent+diagnosis) / STORE (state). Challengers documented in DESIGN_SPACE §4.
+EVIDENCE: DESIGN_SPACE §4–§5 (adversarial attack resolutions).
+ASSUMPTIONS: Userspace authority sufficient — to be confirmed by E-01..E-04 (if ceiling proven, ARCH-C revisit allowed with evidence).
+CONSEQUENCES: Hours-to-first-build feasible (FB-1); all privileged surfaces enumerated and gated.
+RISKS: RSK-101, RSK-109.
+REOPEN_IF: E-series evidence shows userspace ceiling blocks SLO attainment.
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-008 — Observation-first rollout
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 8 (STATE B)
+CONTEXT: 02 §8 (first build reveals device truth, falsifies assumptions, immediate value); 01 §6 (root ≠ evidence).
+DECISION: FB-1 ships OBS+UI diagnosis only, zero actuation. Actuation enters at FB-2 in shadow→canary behind consent.
+EVIDENCE: 02 §8 criteria; DESIGN_SPACE CF-1.
+CONSEQUENCES: First build in hours; E-01/E-03/E-05/E-10/E-12 run on FB-1.
+RISKS: None material.
+REOPEN_IF: —
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-009 — Privilege model: minimal schema-bound root helper
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 9 (STATE B)
+CONTEXT: 01 §3 bans unrestricted arbitrary-root endpoints; RSK-107.
+DECISION: Privileged native helper (root) exposes ONLY a fixed, versioned, schema-validated command set over a local UNIX socket with per-install token + peer-UID auth. No shell passthrough, no network, no eval. App is unprivileged; absent root → degraded mode.
+EVIDENCE: 01 §3 admission rules; DESIGN_SPACE attack #8.
+CONSEQUENCES: Every privileged action enumerated in component contracts; audit journal mandatory.
+RISKS: RSK-107 residual → security review at BUILD_READY.
+REOPEN_IF: A required control cannot fit schema model (then extend schema explicitly, never genericize).
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-010 — Control admission pipeline
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 10 (STATE B)
+CONTEXT: 01 §3/§6: privileged controls need observed→useful→safe evidence; 02 §5 dispositions.
+DECISION: Every control surface carries a state machine: UNKNOWN → OBSERVED → USEFUL(evidence) → SAFE(bounds) → PRODUCTION; plus EXPERIMENTAL gate for high-risk (e.g., lmkd retune). SAFE enforces: no production action from controls below SAFE state on that device.
+EVIDENCE: R-040/R-043; E-series mapping.
+CONSEQUENCES: Device capability registry is a core STORE object; config per device.
+RISKS: Slower rollout on new devices (accepted).
+REOPEN_IF: —
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-011 — Visual twin format: Mermaid (+SVG renders in audit)
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 11 (STATE B)
+CONTEXT: 06 §2: editable repo-friendly format when Figma unavailable; Figma unavailable here.
+DECISION: Mermaid sources in docs/visuals/*.mmd + VISUAL_TRACEABILITY.json mapping node IDs→components/docs/tests; renders generated at packaging/audit.
+EVIDENCE: 06 §2 list.
+CONSEQUENCES: All diagrams text-diffable; traceability enforced in audit.
+RISKS: Complex flows may need multiple diagrams (accepted).
+REOPEN_IF: —
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-012 — Prediction arms only low-regret actions
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 12 (STATE B)
+CONTEXT: Attack #7 (learning fits noise); RSK-105.
+DECISION: Predictor output can arm ONLY: bounded page-cache warm, kill-protection nudge, boost pre-arm. Never kills, never freezes, never irreversible. Confidence gate + abstention + online regret accounting (E-09).
+EVIDENCE: S-015/S-016 (method + misprediction costs).
+CONSEQUENCES: Misprediction worst case = small wasted memory/I-O, self-correcting.
+RISKS: Value ceiling if accuracy low → heuristic fallback defined.
+REOPEN_IF: E-09 results.
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-013 — Vendor-policy coexistence, not combat
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 13 (STATE B)
+CONTEXT: EMUI layered kill policies (S-010); fighting vendor policy causes oscillation/instability.
+DECISION: Detect vendor policy state (E-12); align policy around it; advise user through documented settings when beneficial; never silently counteract. Single-writer rule per control surface.
+EVIDENCE: S-010; DESIGN_SPACE attack #3/#5.
+CONSEQUENCES: FX-OBS includes vendor-policy detection; UI includes guidance flow.
+RISKS: Coverage gaps → manual checklist fallback.
+REOPEN_IF: E-12.
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-014 — Target bounding: Android-based Huawei-class devices
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 14 (STATE B)
+CONTEXT: "Huawei-class Android phone" needs scoping; HarmonyOS NEXT/5 has no AOSP core and cannot run Android apps (S-020).
+DECISION: Target = Android(AOSP)-based Huawei devices (EMUI; dual-framework HarmonyOS ≤4), Arm big.LITTLE SoCs (Kirin class), kernel ≥4.19+ (PSI/cgroup v2 features verified per device via capability probe). HarmonyOS NEXT is out of scope (different OS). Core design is AOSP-general with a device-adaptation layer.
+EVIDENCE: S-020; kernel feature requirements from S-004/S-007/S-013.
+CONSEQUENCES: Capability probe matrix is mandatory at first run (RSK-109).
+RISKS: EMUI variance (U-005).
+REOPEN_IF: User narrows to a specific device model.
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-015 — No-device truth policy for this package
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 15 (STATE B)
+CONTEXT: No physical device in environment (00A §4 blocker category; 05A §13).
+DECISION: All device-dependent claims remain HYPOTHESIS/UNKNOWN with ready-to-run experiment definitions (E-01..E-12). Package reports implementation readiness as FULLY_SPECIFIED with device-validation pending — never as tested-on-target.
+EVIDENCE: 01 §4/§9; 05A §13.
+CONSEQUENCES: Audit must verify no truth-state inflation.
+RISKS: None (honesty preserved).
+REOPEN_IF: Device evidence arrives.
+SUPERSEDES: —
+SUPERSEDED_BY: —
