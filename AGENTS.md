@@ -57,12 +57,12 @@ The mission contract is immutable and lives in `mission/model/`. The state machi
 
 ## Current state (updated each checkpoint — verify against files above)
 
-- Checkpoint: **CP-005** (STATE D terminal closure — 13 audits PASS, DEFECT-1..4 repaired, cold-start PASS, completion lock verified pre-ZIP; transfer packaging in progress).
+- Checkpoint: **CP-005** (STATE D COMPLETE — 13 audits PASS, DEFECT-1..4 repaired, cold-start PASS, completion lock verified, transfer package built + self-verified, terminal handoff emitted: MISSION_COMPLETE — ARM A).
 - Mission state: **STATE D (Final Audit)** — contracts `mission/model/07_FINAL_AUDIT_PROTOCOL.md`, `08_TRANSFER_PACKAGE_SPEC.md` are now active.
 - Architecture: **ARCH-FX-CP-01 "CONTINUUM"** — adaptive continuity control plane (D-006/D-007). Components: FX-OBS, FX-MODEL, FX-POLICY, FX-ACT, FX-SAFE, FX-UI, FX-STORE.
 - Implementation: **FULLY_SPECIFIED (docs); zero code** — no component is IMPLEMENTED; device validation BLOCKED_BY_DEVICE_EVIDENCE (D-015; experiments E-01..E-12 ready).
 - Ledger: R-001…R-133; no active blockers.
-- Next: transfer ZIP + package self-verification → final GitHub verification → terminal handoff. (Done: ledger closure through completion lock, GitHub cold-start validation, final status proof.)
+- Next: FB-1 "Observer" build (stage S1) per `docs/plan/FIRST_BUILD_CRITICAL_PATH.md`. STATE D is complete and persisted: 13 audits, cold-start validation, final status proof, transfer package (`dist/`) with 75/75 self-verification, terminal handoff.
 
 ## Operating rules for continuing agents (05B §2 checklist)
 

@@ -1,7 +1,7 @@
 # CHECKPOINT
 
 CHECKPOINT_ID: CP-005
-MISSION_STATE: STATE D (FINAL AUDIT) terminal closure — audits A-01..A-13 PASS (`audit/FINAL_AUDIT_REPORT.md`); cold-start validation PASS (`audit/COLD_START_VALIDATION.md`); completion lock verified pre-ZIP (`audit/FINAL_STATUS_PROOF.md`); transfer ZIP built + verified; only the terminal handoff statement remains.
+MISSION_STATE: STATE D (FINAL AUDIT) COMPLETE — audits A-01..A-13 PASS (`audit/FINAL_AUDIT_REPORT.md`); cold-start validation PASS (`audit/COLD_START_VALIDATION.md`); completion lock verified pre-ZIP (`audit/FINAL_STATUS_PROOF.md`); transfer ZIP built + self-verified; final GitHub verification green; terminal handoff emitted — MISSION_COMPLETE — ARM A.
 CURRENT_ARCHITECTURE_CANDIDATE: ARCH-FX-CP-01 "CONTINUUM" (D-007) — adaptive continuity control plane (unchanged by STATE D; reinforced by D-016)
 LAST_MAJOR_DECISION: D-016 (reclaim-engine detection: per-engine CS-5 regions, MGLRU default on android14+ GKI)
 
@@ -14,7 +14,7 @@ LAST_MAJOR_DECISION: D-016 (reclaim-engine detection: per-engine CS-5 regions, M
 - **Device-validation state:** BLOCKED_BY_DEVICE_EVIDENCE (no device in environment — D-015); all device claims HYPOTHESIS.
 - **Active blockers:** none. Device evidence unavailable (handled as truth labels, 05A §13) — not a mission blocker.
 - **Top risks:** RSK-101 (controller interference), RSK-103 (adj overwrite), RSK-106 (battery), RSK-109 (EMUI variance), RSK-110 (trust); full register `.v10/working_memory/RISK_REGISTER.md`.
-- **Next exact task:** terminal handoff statement (closes R-022/R-028/R-132). After STATE D closes → FB-1 "Observer" build per `docs/plan/FIRST_BUILD_CRITICAL_PATH.md` (stage S1 in `docs/plan/IMPLEMENTATION_BLUEPRINT.md`).
+- **Next exact task:** STATE D is closed (terminal handoff emitted; R-022/R-028/R-132 SATISFIED). Next milestone → FB-1 "Observer" build per `docs/plan/FIRST_BUILD_CRITICAL_PATH.md` (stage S1 in `docs/plan/IMPLEMENTATION_BLUEPRINT.md`).
 - **Files the next model must read first:** `AGENTS.md` → this file → `docs/project/00_START_HERE.md` → `.v10/state/PROJECT_STATE.json` → `.v10/working_memory/REQUIREMENT_LEDGER.md`.
 
 ## STATE D audit record (CP-005)
@@ -57,7 +57,7 @@ Previous session interrupted at quota boundary. Recovery executed per handoff pr
 - None. Device evidence unavailable in this environment — truth-labeled, not a mission blocker (00A §4).
 
 ## Next highest-value action
-- After terminal handoff: FB-1 "Observer" implementation (state S1) when a development environment with Android toolchain exists.
+- FB-1 "Observer" implementation (stage S1) when a development environment with Android toolchain exists.
 
 ## Files/artifacts to read on recovery
 1. `AGENTS.md`
