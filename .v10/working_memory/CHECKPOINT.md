@@ -1,7 +1,7 @@
 # CHECKPOINT
 
 CHECKPOINT_ID: CP-005
-MISSION_STATE: STATE D (FINAL AUDIT) executing — audits A-01..A-13 run per `mission/model/07_FINAL_AUDIT_PROTOCOL.md`; repairs applied; ledger closure, cold-start validation, final status proof, and transfer ZIP remain in this state.
+MISSION_STATE: STATE D (FINAL AUDIT) terminal closure — audits A-01..A-13 PASS (`audit/FINAL_AUDIT_REPORT.md`); cold-start validation PASS (`audit/COLD_START_VALIDATION.md`); completion lock verified pre-ZIP (`audit/FINAL_STATUS_PROOF.md`); transfer ZIP + terminal handoff remain in this state.
 CURRENT_ARCHITECTURE_CANDIDATE: ARCH-FX-CP-01 "CONTINUUM" (D-007) — adaptive continuity control plane (unchanged by STATE D; reinforced by D-016)
 LAST_MAJOR_DECISION: D-016 (reclaim-engine detection: per-engine CS-5 regions, MGLRU default on android14+ GKI)
 
@@ -14,7 +14,7 @@ LAST_MAJOR_DECISION: D-016 (reclaim-engine detection: per-engine CS-5 regions, M
 - **Device-validation state:** BLOCKED_BY_DEVICE_EVIDENCE (no device in environment — D-015); all device claims HYPOTHESIS.
 - **Active blockers:** none. Device evidence unavailable (handled as truth labels, 05A §13) — not a mission blocker.
 - **Top risks:** RSK-101 (controller interference), RSK-103 (adj overwrite), RSK-106 (battery), RSK-109 (EMUI variance), RSK-110 (trust); full register `.v10/working_memory/RISK_REGISTER.md`.
-- **Next exact task:** after STATE D closes → FB-1 "Observer" build per `docs/plan/FIRST_BUILD_CRITICAL_PATH.md` (stage S1 in `docs/plan/IMPLEMENTATION_BLUEPRINT.md`).
+- **Next exact task:** build + verify transfer package (`dist/`, R-128..R-131, R-133) → final ledger rows R-020/R-022/R-028/R-132 → terminal handoff. After STATE D closes → FB-1 "Observer" build per `docs/plan/FIRST_BUILD_CRITICAL_PATH.md` (stage S1 in `docs/plan/IMPLEMENTATION_BLUEPRINT.md`).
 - **Files the next model must read first:** `AGENTS.md` → this file → `docs/project/00_START_HERE.md` → `.v10/state/PROJECT_STATE.json` → `.v10/working_memory/REQUIREMENT_LEDGER.md`.
 
 ## STATE D audit record (CP-005)
@@ -22,9 +22,9 @@ LAST_MAJOR_DECISION: D-016 (reclaim-engine detection: per-engine CS-5 regions, M
 - 13 audits executed per 07 protocol as hostile independent reviewer: `audit/FINAL_AUDIT_REPORT.md`.
 - Defects found: DEFECT-1 (README stale CP-003), DEFECT-2 (stale decision range D-001..D-015 in AGENTS/CHECKPOINT), DEFECT-3 (PROJECT_STATE lacked explicit `blockers` field), DEFECT-4 (CP-004→CP-005 checkpoint transition inconsistency). All repaired in the CP-005 commits; re-audit green.
 - Requirement ledger: extension E4 (R-115..R-133 from 07/08 contracts) entered; closure to all-terminal statuses executed in this state.
-- GitHub cold-start validation: `audit/COLD_START_VALIDATION.md` (fresh anonymous clone; 05B §9 items).
-- Final status proof: `audit/FINAL_STATUS_PROOF.md` (R-037).
-- Transfer package: per `mission/model/08_TRANSFER_PACKAGE_SPEC.md`; manifest + SHA256SUMS in `dist/`; ZIP SHA-256 recorded in `dist/TRANSFER_PACKAGE.md`.
+- GitHub cold-start validation: DONE — `audit/COLD_START_VALIDATION.md` (fresh anonymous clone @273b338; 10/10 items; mechanical re-run green).
+- Final status proof: DONE — `audit/FINAL_STATUS_PROOF.md` (R-037; explicit SHA semantics).
+- Transfer package: IN PROGRESS — per `mission/model/08_TRANSFER_PACKAGE_SPEC.md`; manifest + SHA256SUMS in `dist/`; ZIP SHA-256 recorded in `dist/TRANSFER_PACKAGE.md` at packaging time.
 
 ## Recovery record (CP-004 — continuation session)
 
@@ -46,7 +46,8 @@ Previous session interrupted at quota boundary. Recovery executed per handoff pr
 - Audit outcome: package internally consistent; defects were documentation-drift only; zero architecture changes resulted from audit.
 
 ## What changed recently
-- CP-005: final audit executed; DEFECT-1..4 repaired; ledger closed (E4 + status closure); cold-start validation; final status proof; transfer package built.
+- CP-005 closure: cold-start validation PASS (fresh anonymous clone); completion lock verified pre-ZIP; FINAL_STATUS_PROOF persisted; transfer package in progress. One push-tooling incident (placeholder content in commit 15081cf) detected on read-back and repaired in 0223a65/21181bd/ec95cdc — disclosed in FINAL_AUDIT_REPORT §R.
+- CP-005: final audit executed; DEFECT-1..4 repaired; ledger E4 extension + closure part A.
 - CP-004: recovered `docs/ops/TEST_MATRIX.md` from interrupted-session sandbox bundle (provenance verified above).
 
 ## Current open questions
@@ -65,4 +66,4 @@ Previous session interrupted at quota boundary. Recovery executed per handoff pr
 4. `.v10/working_memory/REQUIREMENT_LEDGER.md` (R-001..R-133)
 5. `.v10/working_memory/DECISION_LOG.md` (D-001..D-016)
 6. `.v10/state/PROJECT_STATE.json`, `KNOWLEDGE_GRAPH.json`, `IMPLEMENTATION_MAP.json`
-7. `audit/FINAL_AUDIT_REPORT.md` (STATE D evidence)
+7. `audit/FINAL_AUDIT_REPORT.md` + `audit/COLD_START_VALIDATION.md` + `audit/FINAL_STATUS_PROOF.md` (STATE D evidence)

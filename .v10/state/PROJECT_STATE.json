@@ -1,9 +1,9 @@
 {
-  "project_phase": "STATE D (FINAL AUDIT) executing \u2014 13 audits run; DEFECT-1..4 repaired; ledger closure/cold-start/packaging in progress",
+  "project_phase": "STATE D (FINAL AUDIT) terminal closure — audits A-01..A-13 PASS; completion lock verified pre-ZIP; transfer packaging and terminal handoff in progress",
   "architecture_id": "ARCH-FX-CP-01",
   "architecture_codename": "CONTINUUM",
   "truth_states": {
-    "architecture": "FULLY_SPECIFIED (PROPOSED \u2014 no code exists)",
+    "architecture": "FULLY_SPECIFIED (PROPOSED — no code exists)",
     "implementation": "FULLY_SPECIFIED at documentation level; 0 components implemented",
     "device_validation": "BLOCKED_BY_DEVICE_EVIDENCE (D-015)",
     "F-001_repo_facts": "VERIFIED_FACT",
@@ -57,7 +57,7 @@
   },
   "verified_facts": [
     "F-001: repo facts (ahaggag037/research-system-brain, main, public)",
-    "F-006..F-019 platform mechanism facts with sources S-002..S-026 (canonical list: docs/project/TRUTH_REGISTER.md \u00a73)"
+    "F-006..F-019 platform mechanism facts with sources S-002..S-026 (canonical list: docs/project/TRUTH_REGISTER.md §3)"
   ],
   "critical_unknowns": [
     "U-003: per-device control writability/ownership (gates: E-01,E-03,E-12)",
@@ -81,7 +81,7 @@
     "RSK-001 (mitigated)"
   ],
   "blocked_requirements": [],
-  "build_state": "not_started \u2014 FB-1 critical path: docs/plan/FIRST_BUILD_CRITICAL_PATH.md (\u22486\u20139 h to installable)",
+  "build_state": "not_started — FB-1 critical path: docs/plan/FIRST_BUILD_CRITICAL_PATH.md (≈6–9 h to installable)",
   "test_state": "E-01..E-12 harness plans READY/PROPOSED; TEST_MATRIX rows T-E01..T-E12 complete (CP-004 recovery); unit/integration suites PLANNED; nothing executed (no device, no code)",
   "ready_states": {
     "ARCHITECTURE_READY": true,
@@ -107,12 +107,12 @@
       "docs/visuals/VISUAL_TRACEABILITY.json"
     ]
   },
-  "next_milestone": "STATE D closure: cold-start validation \u2192 final status proof \u2192 transfer ZIP \u2192 terminal handoff; then FB-1 Observer build (S1)",
+  "next_milestone": "Terminal handoff of STATE D (transfer ZIP + MISSION_COMPLETE statement); then FB-1 Observer build (S1) per docs/plan/FIRST_BUILD_CRITICAL_PATH.md",
   "checkpoint": "CP-005",
   "ledger_range": "R-001..R-133",
   "last_updated": "2026-10-10",
   "recovery_note": "CP-004: session-interruption recovery complete; docs/ops/TEST_MATRIX.md rows T-E03/T-E06/T-E07 recovered from prior sandbox bundle after independent semantic verification; all other bundle files identical to canonical main",
   "research_expansion": "STATE D challenge round complete (SOURCE_INDEX Q-R1..Q-R5; S-022..S-026; D-016 reclaim-engine detection). No architecture change earned; CONTINUUM unchanged",
   "blockers": [],
-  "audit_state": "A-01..A-13 executed (audit/FINAL_AUDIT_REPORT.md); DEFECT-1..4 repaired at CP-005; re-audit green"
+  "audit_state": "A-01..A-13 PASS (audit/FINAL_AUDIT_REPORT.md v-final); cold-start PASS (audit/COLD_START_VALIDATION.md); completion lock verified pre-ZIP (audit/FINAL_STATUS_PROOF.md)"
 }
