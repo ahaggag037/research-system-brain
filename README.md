@@ -8,17 +8,20 @@ This repository is the primary continuation surface for the mission. Conversatio
 
 | | |
 |---|---|
-| Mission state | STATE A complete → STATE B (Discovery) |
-| Architecture | Undecided (by design — see `.v10/working_memory/DECISION_LOG.md`) |
-| Checkpoint | CP-001 |
-| Requirements | R-001…R-064 (`.v10/working_memory/REQUIREMENT_LEDGER.md`) |
+| Mission state | STATE C complete → STATE D (Final Audit) |
+| Architecture | **ARCH-FX-CP-01 "CONTINUUM"** — adaptive continuity control plane (D-006/D-007) |
+| Implementation | FULLY_SPECIFIED (documentation); no code yet; device validation BLOCKED_BY_DEVICE_EVIDENCE |
+| Checkpoint | CP-003 |
+| Requirements | R-001…R-114 (`.v10/working_memory/REQUIREMENT_LEDGER.md`) |
+| Knowledge package | [`docs/project/00_START_HERE.md`](docs/project/00_START_HERE.md) |
 
 ## Where to start
 
 - **Continuing agents**: read [`AGENTS.md`](AGENTS.md) first — it is the maintained continuation surface.
+- **Project entry (humans + agents)**: [`docs/project/00_START_HERE.md`](docs/project/00_START_HERE.md).
 - **Mission contract**: [`mission/model/00_CONTROL_PLANE.md`](mission/model/00_CONTROL_PLANE.md) (progressive disclosure: later files unlock per state).
 - **Live mission state**: [`.v10/state/PROJECT_STATE.json`](.v10/state/PROJECT_STATE.json) and [`.v10/working_memory/`](.v10/working_memory/).
 
 ## Constraints
 
-Clean-room isolation (no predecessor FixHUA material), truth-state discipline, root-as-capability-not-definition, and production-admission safety rules apply to everything in this repo. See `AGENTS.md` §Hard rules.
+Clean-room isolation (no predecessor FixHUA material), truth-state discipline, root-as-capability-not-definition, and production-admission safety rules apply to everything in this repo. See `AGENTS.md` §Hard rules and [`docs/architecture/SAFETY_INVARIANTS.md`](docs/architecture/SAFETY_INVARIANTS.md).
