@@ -1,4 +1,5 @@
 # GITHUB REPOSITORY CONTINUITY CONTRACT
+
 Canonical repository: `ahaggag037/research-system-brain` (`main`).
 ## A future model must be able to continue from GitHub alone
 
