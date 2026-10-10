@@ -59,6 +59,10 @@
 | F-013 | `vm.extra_free_kbytes` purpose; swappiness 0–200 semantics with zram | S-017/S-018 |
 | F-014 | Perfetto platform tracing with programmable config; too heavy for always-on telemetry | S-021 |
 | F-015 | App standby buckets incl. restricted bucket; phantom process cap (32) with toggle | S-012/S-014 |
+| F-016 | MGLRU default-enabled on android14-* GKI and later; runtime state at `/sys/kernel/mm/lru_gen/enabled`; reclaim behavior differs from classic LRU | S-022 |
+| F-017 | Android 16 (API 36) official frozen-state observation APIs (`IBinder.FrozenStateChangeCallback`); MAX_CACHED_PROCESSES significantly raised on Android 14+ supported devices (~30% cold-start reduction attributed) | S-025 |
+| F-018 | Global Huawei flagships ship EMUI 15 (AOSP-derived, APK-compatible); HarmonyOS NEXT remains China-only (global pilot reported, timing UNKNOWN) | S-024 |
+| F-019 | GKI matrix: Android 15→6.6, 16→6.12, 17→6.18; schedutil rework (~6.7+) honors uclamp hints more faithfully; PSI/cgroup-v2/uclamp present on all matrix kernels | S-026 |
 
 ## 4. Hypotheses (device-dependent; all gated by experiments)
 
