@@ -1,7 +1,7 @@
 {
   "schema": "knowledge_graph.v1",
-  "generated": "2026-10-10 CP-005 (STATE D research expansion: +D-016, sources S-022..S-026)",
-  "purpose": "05 §6: machine-readable relationship graph — requirements, decisions, mechanisms, components, data/state, source modules, tests, diagrams, risks, experiments, implementation stages",
+  "generated": "2026-10-10 CP-005 (STATE D final audit: +requirements E4 R-115..R-133, +audit artifacts)",
+  "purpose": "05 \u00a76: machine-readable relationship graph \u2014 requirements, decisions, mechanisms, components, data/state, source modules, tests, diagrams, risks, experiments, implementation stages",
   "nodes": [
     {
       "id": "MISSION",
@@ -260,70 +260,70 @@
       "id": "CS-1",
       "type": "mechanism",
       "name": "uclamp boost",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-2",
       "type": "mechanism",
       "name": "adj nudge",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-3",
       "type": "mechanism",
       "name": "max_cached_processes",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-4",
       "type": "mechanism",
       "name": "freezer alignment",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-5",
       "type": "mechanism",
       "name": "vm regions",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-6",
       "type": "mechanism",
       "name": "io deprio",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-7",
       "type": "mechanism",
       "name": "pagecache warm",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-8",
       "type": "mechanism",
       "name": "thermal advisory",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
       "id": "CS-9",
       "type": "mechanism",
       "name": "lmkd retune (EXP)",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "RESEARCH_ONLY"
     },
     {
       "id": "CS-10",
       "type": "mechanism",
       "name": "vendor guidance",
-      "path": "docs/architecture/ARCHITECTURE.md §3",
+      "path": "docs/architecture/ARCHITECTURE.md \u00a73",
       "status": "FULLY_SPECIFIED"
     },
     {
@@ -823,25 +823,25 @@
       "id": "S1_FB1",
       "type": "stage",
       "name": "S1_FB1",
-      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md §B"
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
     },
     {
       "id": "S2_FB2",
       "type": "stage",
       "name": "S2_FB2",
-      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md §B"
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
     },
     {
       "id": "S3_FB3",
       "type": "stage",
       "name": "S3_FB3",
-      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md §B"
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
     },
     {
       "id": "S4_EXP",
       "type": "stage",
       "name": "S4_EXP",
-      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md §B"
+      "path": "docs/plan/IMPLEMENTATION_BLUEPRINT.md \u00a7B"
     },
     {
       "id": "CHECKPOINT",
@@ -890,6 +890,34 @@
       "type": "decision",
       "name": "D-016",
       "path": ".v10/working_memory/DECISION_LOG.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "audit/FINAL_AUDIT_REPORT.md",
+      "type": "working_memory",
+      "name": "STATE D final audit report (13 audits + repair log)",
+      "path": "audit/FINAL_AUDIT_REPORT.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "audit/COLD_START_VALIDATION.md",
+      "type": "working_memory",
+      "name": "GitHub cold-start validation result",
+      "path": "audit/COLD_START_VALIDATION.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "audit/FINAL_STATUS_PROOF.md",
+      "type": "working_memory",
+      "name": "final repository status proof (R-037)",
+      "path": "audit/FINAL_STATUS_PROOF.md",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "R-115..R-133",
+      "type": "requirements",
+      "name": "STATE D audit & packaging extension E4 (07/08)",
+      "path": ".v10/working_memory/REQUIREMENT_LEDGER.md",
       "status": "ACTIVE"
     }
   ],
@@ -1188,6 +1216,11 @@
       "from": "D-016",
       "to": "CS-5",
       "rel": "guides"
+    },
+    {
+      "from": "R-115..R-133",
+      "to": "audit/FINAL_AUDIT_REPORT.md",
+      "rel": "verified-by"
     }
   ]
 }
