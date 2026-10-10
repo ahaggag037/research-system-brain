@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    { "id": "mission", "type": "contract", "title": "V10.3 mission package snapshot", "status": "canonical", "path": "mission/", "canonical": true },
+    { "id": "control-plane", "type": "contract", "title": "00_CONTROL_PLANE.md — state machine", "status": "canonical", "path": "mission/model/00_CONTROL_PLANE.md", "canonical": true },
+    { "id": "constitution", "type": "contract", "title": "01_ENGINEERING_CONSTITUTION.md — permanent invariants", "status": "canonical", "path": "mission/model/01_ENGINEERING_CONSTITUTION.md", "canonical": true },
+    { "id": "ledger", "type": "working-memory", "title": "REQUIREMENT_LEDGER.md — R-001..R-064", "status": "active", "path": ".v10/working_memory/REQUIREMENT_LEDGER.md", "canonical": true },
+    { "id": "checkpoint", "type": "working-memory", "title": "CHECKPOINT.md — CP-001", "status": "active", "path": ".v10/working_memory/CHECKPOINT.md", "canonical": true },
+    { "id": "decisions", "type": "working-memory", "title": "DECISION_LOG.md — D-001..D-005", "status": "active", "path": ".v10/working_memory/DECISION_LOG.md", "canonical": true },
+    { "id": "notes", "type": "working-memory", "title": "ACTIVE_NOTES.md", "status": "active", "path": ".v10/working_memory/ACTIVE_NOTES.md", "canonical": true },
+    { "id": "experiments", "type": "working-memory", "title": "EXPERIMENT_REGISTRY.md", "status": "empty", "path": ".v10/working_memory/EXPERIMENT_REGISTRY.md", "canonical": true },
+    { "id": "sources", "type": "working-memory", "title": "SOURCE_INDEX.md", "status": "active", "path": ".v10/working_memory/SOURCE_INDEX.md", "canonical": true },
+    { "id": "contradictions", "type": "working-memory", "title": "CONTRADICTION_REGISTER.md", "status": "empty", "path": ".v10/working_memory/CONTRADICTION_REGISTER.md", "canonical": true },
+    { "id": "risks", "type": "working-memory", "title": "RISK_REGISTER.md — RSK-001..003", "status": "active", "path": ".v10/working_memory/RISK_REGISTER.md", "canonical": true },
+    { "id": "project-state", "type": "machine-state", "title": "PROJECT_STATE.json", "status": "active", "path": ".v10/state/PROJECT_STATE.json", "canonical": true },
+    { "id": "agents-md", "type": "entry", "title": "AGENTS.md — cold-start continuation surface", "status": "active", "path": "AGENTS.md", "canonical": true },
+    { "id": "readme", "type": "entry", "title": "README.md — human entry", "status": "active", "path": "README.md", "canonical": true }
+  ],
+  "edges": [
+    { "from": "agents-md", "to": "checkpoint", "relation": "routes-recovery-to" },
+    { "from": "agents-md", "to": "ledger", "relation": "routes-recovery-to" },
+    { "from": "agents-md", "to": "decisions", "relation": "routes-recovery-to" },
+    { "from": "agents-md", "to": "control-plane", "relation": "routes-to-current-state-file" },
+    { "from": "checkpoint", "to": "project-state", "relation": "summarizes" },
+    { "from": "ledger", "to": "mission", "relation": "compiled-from" },
+    { "from": "decisions", "to": "constitution", "relation": "constrained-by" },
+    { "from": "experiments", "to": "notes", "relation": "proposed-from" },
+    { "from": "risks", "to": "experiments", "relation": "mitigated-by" },
+    { "from": "sources", "to": "notes", "relation": "supports" }
+  ]
+}
