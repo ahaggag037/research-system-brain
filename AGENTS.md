@@ -38,19 +38,28 @@ The mission contract is immutable and lives in `mission/model/`. The state machi
 ├── README.md                    ← human-facing entry
 ├── mission/                     ← canonical V10.3 contract snapshot (immutable)
 │   └── model/                   ← 00..09 mission files (read progressively, per state)
+├── docs/                        ← canonical knowledge package (STATE C+)
+│   ├── project/                 ← entry doc, problem model, truth register
+│   ├── architecture/            ← architecture, ADRs, alternatives
+│   ├── components/              ← component contracts
+│   ├── integration/             ← interfaces, data/state model, runtime traces
+│   ├── lifecycle/               ← startup/shutdown
+│   ├── ops/                     ← build runbook, failure/recovery, test matrix, ready states
+│   ├── plan/                    ← implementation blueprint, first-build critical path, fast-build plan
+│   ├── research/                ← risk transmutation, rejected ideas, experiment/measurement strategy
+│   └── visuals/                 ← visual twin (Mermaid sources) + traceability
 └── .v10/
-    ├── working_memory/          ← operational scratch (8 canonical files)
-    └── state/                   ← PROJECT_STATE.json, KNOWLEDGE_GRAPH.json (+ DESIGN_CONVERGED when declared)
+    ├── working_memory/          ← operational scratch (8 canonical files + DESIGN_SPACE.md)
+    └── state/                   ← PROJECT_STATE.json, KNOWLEDGE_GRAPH.json, DESIGN_CONVERGED.md
 ```
-
-Planned as the mission advances (00B §3): `docs/` architecture/decision records, component contracts, implementation map, build/test/runbook, visual twin source, `audit/` final audit, `dist/` transfer package.
 
 ## Current state (updated each checkpoint — verify against files above)
 
-- Checkpoint: **CP-001** (STATE A complete; GitHub persistence established).
-- Mission state: **entering STATE B (Discovery)**.
-- Architecture: **undecided by design** (R-005).
-- Ledger: R-001…R-064 active; no blockers.
+- Checkpoint: **CP-002** (STATE B complete; `DESIGN_CONVERGED` declared — see `.v10/state/DESIGN_CONVERGED.md`).
+- Mission state: **STATE C (Knowledge Packaging)** — contracts `mission/model/05*.md` and `06_VISUAL_TWIN_CONTRACT.md` are now active.
+- Architecture: **ARCH-FX-CP-01 "CONTINUUM"** — adaptive continuity control plane (D-006/D-007). Components: FX-OBS, FX-MODEL, FX-POLICY, FX-ACT, FX-SAFE, FX-UI, FX-STORE.
+- Ledger: R-001…R-064 + STATE C packaging extension; no blockers.
+- Truth policy: no physical device in environment — device-dependent claims are HYPOTHESIS with experiments E-01…E-12 (D-015).
 
 ## Contribution protocol for continuing agents
 

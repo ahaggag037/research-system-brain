@@ -3,27 +3,37 @@
 Keep this concise.
 
 ## Current high-value facts
-- F-001: Authorized repo `ahaggag037/research-system-brain` (ID 1412675689), `main`, public — verified empty at mission start; clean-room boundary holds.
-- F-002: GitHub write access available via authenticated API this session (D-003); sandbox git cannot push.
-- F-003: Mission package V10.3 checksums verified; canonical snapshot stored at `mission/` (excluding `_human/`, D-002); all 16 model files staged pre-discovery per user directive (D-005).
-- F-004: Target outcomes (00 §0) are experiential, not benchmark metrics: responsiveness, smoothness, low jank, multitasking continuity, reload avoidance, resume quality, sustained stability, workload predictability, intelligent/adaptive management.
-- F-005: Root is assumed available when justified (00 §0) but every privileged control must be observed → useful → safe (01 §6) and pass production admission (01 §3).
+- F-001: Authorized repo `ahaggag037/research-system-brain` (ID 1412675689), `main`, public; CP-001 pushed and verified byte-exact (30 files).
+- F-002: GitHub write access via authenticated API (D-003); sandbox git read-only for GitHub.
+- F-006: lmkd tunable via `ro.lmk.*` (PSI partial 70 ms / complete 700 ms defaults; kill_heaviest_task; lowmem_min_oom_score 701) — VERIFIED_FACT platform-level (S-002/S-003); runtime application needs lmkd restart → EXPERIMENTAL (E-11).
+- F-007: uclamp per-task + cgroup v2 `cpu.uclamp.min/max` control freq selection and big.LITTLE placement — VERIFIED_FACT (S-004).
+- F-008: PSI triggers are poll-able, window 500 ms–10 s, rate-limited per window; per-cgroup pressure exists — VERIFIED_FACT (S-007).
+- F-009: Cached-app freezer (Android 11+): freeze ~10 s after cached (14+), compaction on freeze, `use_freezer` + `max_cached_processes` device_config overrides documented — VERIFIED_FACT (S-013).
+- F-010: ART CC GC pause small (~2 ms class) — VERIFIED_FACT (S-006); jank taxonomy measurable via FrameTimeline (S-008).
+- F-011: EMUI layered background kills (App-launch manager, cleanup, PowerGenie-class) — field evidence (S-010); HarmonyOS NEXT is NOT Android → target bounded to Android-based EMUI/HarmonyOS ≤4 (S-020, D-014).
+- F-012: ADPF PerformanceHint sessions prove platform-sanctioned adaptive hints (S-011); APPM proves next-app prediction without training/sensors (S-015).
+- F-013: extra_free_kbytes exists to keep bursts out of direct reclaim (S-017); swappiness >100 rational with fast zram (S-018) — state-aware VM regions justified.
 
-## Current hypotheses
-- None yet. STATE B begins now; product category deliberately undecided (R-005).
+## Current hypotheses (device-gated)
+- H-01: PSI triggers give ≥100 ms early warning before allocstall spikes (E-01).
+- H-02: Bounded uclamp boost at launch cuts launch latency ≥10% (E-02).
+- H-03: oom_score_adj nudges survive between AMS recomputes usefully (E-03).
+- H-04: max_cached_processes +8 cuts reloads ≥25% without PSI regression (E-04).
+- H-05: Thermal zones give ≥10 s throttle lead time (E-08).
+- H-06: Next-app Accuracy@3 ≥60% makes low-regret arming positive-EV (E-09).
+- H-07: Production OBS overhead <1% CPU (E-10).
 
-## High-potential ideas
-- Deferred to STATE B generation phase (02 §3: generate before judging). Seed directions allowed by mission scope (not assumptions): adaptive resource governance, workload prediction, memory/IO/scheduling coordination, app lifecycle continuity management. All must earn complexity (01 §7).
+## High-potential ideas (dispositioned — see DESIGN_SPACE §3)
+- CF-1 observation plane (production foundation), CF-2 transition uclamp, CF-3 memory continuity governance, CF-4 I-O coordination (+experimental prefetch), CF-5 thermal advisory shaping, CF-6 predictive arming (low-regret only), CF-7 vendor coexistence. Rejected: CF-8 kernel mods v1, CF-9 RAM cleaning, CF-10 clock pinning, CF-11 global freezer disable.
 
 ## Immediate next actions
-1. First-principles problem decomposition of target outcomes (02 §1): causal chains for jank, reloads, resume latency, sustained-performance decay.
-2. Public research: Android runtime/scheduler/memory/IO, Linux kernel controls, Huawei-class platform public documentation, academic control/queueing literature where relevant (02 §4).
-3. Log sources to SOURCE_INDEX, hypotheses/experiments to EXPERIMENT_REGISTRY, decisions to DECISION_LOG (R-050).
-4. Checkpoint before context-heavy research branches (R-051).
+1. Declare DESIGN_CONVERGED (marker + commit CP-002). [done]
+2. Enter STATE C: ledger extension (packaging requirements from 05/05A/05B/06), then distill DESIGN_SPACE → docs/.
+3. Push CP-003 when knowledge package substantially complete.
 
 ## Things that must not be forgotten
-- Blindness rule R-008/R-029/R-030: never touch prior FixHUA material or other user repos; public research only, never as backdoor.
-- R-017: no final-documentation polish while architecture is moving.
-- Update AGENTS.md at every state transition (D-004 consequence).
-- Ledger extension required now that 02/05/05A/05B/06/07/08/09 text is staged: contract *activation* remains per-state (D-005), ledger rows for packaging/audit contracts are added at STATE C/D entry (R-055).
-- Repo is public: no secrets, tokens, keys, personal/device identifiers (R-032).
+- Blindness rules R-008/R-029/R-030 remain active; zero contamination events so far.
+- R-017 lifts at DESIGN_CONVERGED; docs/ may now be created (they are the deliverable).
+- Truth discipline: no device in environment → device claims stay HYPOTHESIS; readiness labels per 05A §13 (D-015).
+- Ledger extension owed at STATE C entry (R-055); AGENTS.md update at transition (D-004).
+- Repo public: no secrets/device identifiers (R-032).
