@@ -190,3 +190,84 @@ DATE/RECENCY: 2026-10-01 (fetched 2026-10-10)
 CLAIMS_SUPPORTED: Perfetto = platform tracing since Android 10; cmdline + programmable TraceConfig; data sources (ftrace, process_stats, counters) suitable for OBS diagnostic sessions.
 LIMITATIONS: Always-on Perfetto is too heavy for production telemetry → diagnostic mode only (attack #2 resolution).
 NOTES: Authority A.
+
+---
+
+## STATE D research-expansion round (CP-004 → CP-005)
+
+Mandatory challenge pass on consequential claims (handoff §8). Format: QUESTION → SOURCE → WHAT WAS LEARNED → CONFIDENCE → DECISION/ARCHITECTURE IMPACT. New sources S-022..S-026 below; decision impact recorded in DECISION_LOG D-016; new facts F-016..F-019 in TRUTH_REGISTER.
+
+### Q-R1 — Does the reclaim engine on modern targets still behave as S-017/S-018 (classic kswapd/LRU) assume? (kernel-version-sensitive; could change CS-5/E-06)
+→ SOURCE: S-022 (kernel MGLRU docs; Android enablement reporting; ACK branches)
+→ LEARNED: MGLRU merged in Linux 6.1, backported to android13-5.10/5.15 ACK, and **enabled by default on all android14-* GKI kernels** (android14-5.15/6.1, hence android15-6.6, android16-6.12 devices). Runtime state visible at `/sys/kernel/mm/lru_gen/enabled` (bitmask) + `min_ttl_ms`; build flags `CONFIG_LRU_GEN[_ENABLED]`. Google reports fewer kills, lower kswapd CPU, improved launch times with MGLRU on.
+→ CONFIDENCE: High (kernel.org docs Authority A; AOSP ACK branches Authority A; corroborating Android press Authority A).
+→ IMPACT: CS-5 region tables must be **per reclaim engine** (classic LRU vs MGLRU) — strengthens the "no magic values" operating-region design (02 §6) rather than weakening it; E-06 must record MGLRU state per run and calibrate regions separately; capability probe (U-003) gains MGLRU detection. No architecture change earned: CONTINUUM's state-aware POLICY already assumes per-device calibration. Recorded as D-016.
+
+### Q-R2 — Have lmkd `ro.lmk.*` semantics/defaults drifted on current AOSP (Android 15/16/17-era)? (Android-version-sensitive; S-002/S-003 refresh)
+→ SOURCE: S-023 (AOSP lmkd master + android15-qpr1 release branch READMEs; source.android.com lmkd doc 2026-06-17)
+→ LEARNED: Core property set stable (use_psi default true, psi_partial_stall_ms 70 high-end/200 low-RAM, psi_complete_stall_ms 700, kill_heaviest_task, direct_reclaim_threshold_ms, swap_compression_ratio, lowmem_min_oom_score default 701, min 201). Drift on master branch: `ro.lmk.kill_timeout_ms` default 0→100 ms; `ro.lmk.swap_free_low_percentage` default collapsed to 10 (was 10 low-RAM/20 high-end). `ro.*` = read-once-at-boot properties — runtime mutability still requires lmkd restart (E-11 assumption holds).
+→ CONFIDENCE: High (Authority S/A primary).
+→ IMPACT: None architectural; reaffirms S-002 LIMITATION note that OEM/version defaults vary → E-11 canary must read effective defaults per device before proposing deltas. No doc change beyond this index entry.
+
+### Q-R3 — Is D-014's target bound (Android-based Huawei; HarmonyOS NEXT out of scope) still true in 2026? (Huawei/vendor-sensitive)
+→ SOURCE: S-024 (Huawei Central 2025-07: global Pura 80 ships EMUI 15, not HarmonyOS; AndroidHeadlines 2026-08: HarmonyOS global pilot markets planned, likely HarmonyOS 6 transition w/ app compatibility)
+→ LEARNED: Global Huawei flagships (Pura 80/Mate X6, 2025) still ship **EMUI 15 on an AOSP-derived base** (APK-compatible); HarmonyOS NEXT (no AOSP core) remains China-only; global expansion reportedly via pilot markets with a compatibility-retaining transition version. EMUI 15 absorbs HarmonyOS 5 features while staying Android-based.
+→ CONFIDENCE: Medium-high (Authority B trade press, mutually corroborating; Huawei has no official global NEXT roadmap published).
+→ IMPACT: D-014 CONFIRMED for the design horizon; REOPEN_IF extended with a market trigger (global HarmonyOS NEXT transition shipping on Huawei flagships). D-013 coexistence gains relevance: EMUI 15 remains the vendor-policy environment for global targets.
+
+### Q-R4 — Any new *official* observation surface for cached-app freeze state? (could strengthen FX-OBS/E-05)
+→ SOURCE: S-025 (source.android.com cached-apps-freezer doc, refreshed 2026-09-29)
+→ LEARNED: Android 16 (API 36) adds official public APIs `IBinder.FrozenStateChangeCallback` / `addFrozenStateChangeCallback` (throws UnsupportedOperationException on kernels without binder freeze-notification support); `RemoteCallbackList` frozen-callee policies for system services. Also documented: on Android 14+ supported devices `MAX_CACHED_PROCESSES` is "significantly increased", with up to ~30% cold-start reduction attributed to keeping more apps cached — platform-side validation of the CS-3 lever rationale. Android 16 also changes `scheduleAtFixedRate` catch-up to at most one missed execution (STPE_SKIP_MULTIPLE_MISSED_PERIODIC_TASKS) — guidance for FixHUA's own schedulers (prefer fixed-delay/WorkManager patterns).
+→ CONFIDENCE: High (Authority S primary platform doc).
+→ IMPACT: FX-OBS gains an unprivileged freeze-state signal on API 36+ (capability-gated); E-05 measurement plan prefers the official callback over inferring from binder errors; CS-3 rationale strengthened. Refinements applied to FX-OBS contract and EXPERIMENT_REGISTRY; no architecture change.
+
+### Q-R5 — Kernel/uclamp landscape drift on current Android GKI trains? (kernel-version-sensitive; S-004 refresh)
+→ SOURCE: S-026 (source.android.com Android-common-kernel compatibility matrix; schedutil rework commit 9c0b4bb7)
+→ LEARNED: GKI matrix: Android 15 → android15-6.6; Android 16 → android16-6.12; Android 17 (2026) → android17-6.18; backward compat maintained within matrix. Schedutil governor rework (merged ~6.7+, Vincent Guittot) propagates uclamp min/max as explicit performance floor/ceiling to frequency selection — uclamp hints honored more faithfully on android15-6.6/android16-6.12 than on 5.15-era kernels. PSI triggers, cgroup v2 freezer, uclamp cgroups all present on every kernel in the matrix (≥5.10).
+→ CONFIDENCE: High (Authority S/A primary).
+→ IMPACT: D-014's kernel ≥4.19 floor is obsolete in practice — every Android 13+ launch kernel qualifies; E-02's expected effect size may differ by kernel train (newer schedutil = cleaner boost→freq path); capability probe records kernel train. No design change; measurement interpretation note for E-02.
+
+## S-022
+TYPE: PRIMARY_PLATFORM (kernel docs) + TECHNICAL (Android enablement reporting)
+TITLE: Multi-Gen LRU (kernel.org admin guide); MGLRU default-on for android14 GKI kernels (esper.io / Mishaal Rahman report)
+LOCATION: https://docs.kernel.org/admin-guide/mm/multigen_lru.html ; https://www.esper.io/blog/android-dessert-bites-22-linux-memory-management-38419756 ; https://x.com/MishaalRahman/status/1714380955496976699
+DATE/RECENCY: kernel doc current; Android enablement 2023-10, confirmed through android16-6.12 branches (fetched 2026-10-10)
+CLAIMS_SUPPORTED: MGLRU merged Linux 6.1; backported android13-5.10/5.15; default-enabled on android14-5.15/android14-6.1 GKI and later; runtime sysfs `/sys/kernel/mm/lru_gen/enabled` (bitmask incl. 0x0007=y) + `min_ttl_ms` thrashing-prevention knob; reported effects: fewer process kills, lower kswapd CPU, improved app launch times.
+LIMITATIONS: Vendor kernels may ship classic LRU or partial configs — per-device detection mandatory (feeds U-003 probe).
+NOTES: Authority A (kernel.org), A (esper/Rahman, primary-adjacent reporting with AOSP references). Drives D-016.
+
+## S-023
+TYPE: SOURCE_CODE
+TITLE: platform/system/memory/lmkd — master + android15-qpr1 release branch READMEs; source.android.com lmkd doc
+LOCATION: https://android.googlesource.com/platform/system/memory/lmkd/+/refs/heads/master ; https://android.googlesource.com/platform/system/memory/lmkd/+/refs/heads/android15-qpr1-s5-release ; https://source.android.com/docs/core/perf/lmkd
+DATE/RECENCY: source.android.com doc 2026-06-17; branches fetched 2026-10-10
+CLAIMS_SUPPORTED: `ro.lmk.*` property set stable across Android 15→master; drift: `kill_timeout_ms` default 0→100 ms (master), `swap_free_low_percentage` default →10 (master); `lowmem_min_oom_score` default 701/min 201 unchanged; PSI thresholds unchanged.
+LIMITATIONS: OEMs ship their own defaults; `ro.*` props are boot-time — runtime change requires lmkd restart (E-11).
+NOTES: Authority S/A. Refreshes S-002/S-003; no claim overturned.
+
+## S-024
+TYPE: TECHNICAL (vendor-focused trade press, mutually corroborating)
+TITLE: Global Huawei Pura 80 runs EMUI 15 not HarmonyOS (Huawei Central); Huawei ready to take HarmonyOS global via pilot markets (AndroidHeadlines)
+LOCATION: https://www.huaweicentral.com/global-huawei-pura-80-series-runs-emui-15-and-not-harmonyos-psa/ ; https://www.androidheadlines.com/2026/08/huawei-take-harmonyos-global-pilot-markets.html
+DATE/RECENCY: 2025-07-13 ; 2026-08-31 (fetched 2026-10-10)
+CLAIMS_SUPPORTED: Global Huawei flagships (Pura 80, Mate X6) ship EMUI 15 on AOSP-derived Android with APK compatibility; HarmonyOS NEXT (no AOSP) remains China-only; global transition expected via pilot markets with a compatibility-retaining HarmonyOS 6 path.
+LIMITATIONS: Trade press (Authority B); no official Huawei global NEXT roadmap — treat transition timing as UNKNOWN.
+NOTES: Confirms D-014 target bounding for the design horizon; adds market-trigger REOPEN_IF.
+
+## S-025
+TYPE: PRIMARY_PLATFORM
+TITLE: Cached apps freezer (source.android.com) — Android 16 frozen-state observation APIs; MAX_CACHED_PROCESSES increase
+LOCATION: https://source.android.com/docs/core/perf/cached-apps-freezer
+DATE/RECENCY: 2026-09-29 (fetched 2026-10-10)
+CLAIMS_SUPPORTED: Android 16 (API 36) official `IBinder.FrozenStateChangeCallback`/`addFrozenStateChangeCallback` for remote-process freeze observation (UnsupportedOperationException if kernel binder lacks support); `RemoteCallbackList` frozen-callee policies; Android 14+ supported devices raise MAX_CACHED_PROCESSES significantly with up to ~30% cold-start reduction attributed; Android 16 limits `scheduleAtFixedRate` catch-up to one missed execution.
+LIMITATIONS: Callback availability gated on kernel binder driver support — probe per device.
+NOTES: Authority S. Refreshes S-013; strengthens CS-3 rationale; adds unprivileged OBS signal on API 36+.
+
+## S-026
+TYPE: PRIMARY_PLATFORM + SOURCE_CODE
+TITLE: Android common kernels compatibility matrix (source.android.com); sched/cpufreq schedutil rework (tip commit 9c0b4bb7)
+LOCATION: https://source.android.com/docs/core/architecture/kernel/android-common ; https://patchew.org/linux/170073688055.398.12687414937207369825.tip-bot2@tip-bot2/
+DATE/RECENCY: matrix updated 2025-11-26 (android16-6.12 builds); commit merged 2023-11 (fetched 2026-10-10)
+CLAIMS_SUPPORTED: GKI matrix — Android 15: android15-6.6; Android 16: android16-6.12; Android 17: android17-6.18; backward compat within matrix. Schedutil rework propagates uclamp min/max as explicit perf floor/ceiling to freq selection (kernels ~6.7+, i.e., android15-6.6/android16-6.12). PSI triggers/cgroup v2 freezer/uclamp cgroups present on all matrix kernels (≥5.10).
+LIMITATIONS: Vendor-launch kernel may lag platform version; probe records actual train.
+NOTES: Authority S/A. Measurement-interpretation note for E-02; no design change.
