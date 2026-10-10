@@ -1,0 +1,23 @@
+# FAILURE & RECOVERY MATRIX — FixHUA
+
+> 05A §8: 13 failure types × detection / user-visible effect / automatic response / rollback / degraded mode / human action / verification after recovery. All behaviors PROPOSED (no code exists).
+
+| ID | Failure | Detection | User-visible effect | Automatic response | Rollback | Degraded mode | Human action | Verification after recovery |
+|---|---|---|---|---|---|---|---|---|
+| FR-01 | Missing privilege (no root) | helper handshake fails / root probe absent | actuation features unavailable badge | switch to ARCH-D degraded mode at start | n/a (nothing written) | observation + guidance only (FB-1 feature set) | optional: root device or accept degraded | capability registry shows privileged surfaces UNKNOWN; UI honest about it |
+| FR-02 | Missing device capability (e.g., cgroup PSI unreadable, device_config locked) | capability probe (E-12-class); write rejection | affected feature listed as unsupported | mark surface BLOCKED in registry; policy excludes it | n/a | feature-level degrade | none | reprobe after OS update (fingerprint change) |
+| FR-03 | Stale configuration (version skew) | schema_version check at load | none (handled silently) | migrate or fall back to last-known-good snapshot | snapshot restore | defaults if snapshot bad (consent defaults DOWN) | none | config validates against schema; journal entry |
+| FR-04 | Invalid state (corrupt store object) | checksum/parse failure per object | depends on object; never crash-loop | per-object behavior (DATA_STATE_MODEL §6): config→snapshot, models→priors+abstain, journal→preserve tail, registry→all UNKNOWN | per-object restores | observation-only until registry reprobed | optional factory reset via UI | object reloads clean; SAFE readback audit passes |
+| FR-05 | Failed intervention (write rejected/error) | ACT typed error code | none intended; journal shows failure | intent fails closed; surface error counter++ | none needed (no change landed) | surface excluded after repeated failures | none | journal shows clean before/after equality |
+| FR-06 | Partial intervention (readback mismatch) | readback != target after write | transient inconsistency, invisible | helper auto-rollback attempt; SAFE freezes surface | restore journaled before-value | surface quarantined | none unless quarantine persists (UI notice) | readback == before-value; quarantine journal entry |
+| FR-07 | Helper/daemon crash | client timeout; socket drop | actuation pauses; badge | fail-closed; restart with backoff; crash count | in-flight intent rolled back via journal at restart | observation continues | reinstall helper if crashes repeat | handshake + no-op PROBE command round-trip |
+| FR-08 | App crash | process death; dirty flag | app restarts; brief gap in observation | restart via system; reconciliation (STARTUP_SHUTDOWN §6) | stale surface values restored to stock | until reconciled: no new actuation | none | journal reconciliation entries complete |
+| FR-09 | Reboot during work | BOOT_COMPLETED + dirty flag | none after boot completes | deferred reconciliation task; stock-restore stale writes | stock snapshots | observation-only until reconcile done | none | readback audit passes post-boot |
+| FR-10 | Thermal/stability regression linked to FixHUA | oscillation guard (INV-10); energy budget (INV-9); E-08 watch | possible warmth/battery drain | freeze actuation; restore stock; mode → OBSERVATION_ONLY; alert | full stock restore | observation-only until user re-enables | user reviews alert; may re-enable | 24h observation with no regression markers |
+| FR-11 | Incompatible firmware change (OTA) | build fingerprint change at boot | features may be absent | full reprobe; admissions reset to OBSERVED; EXPERIMENTAL re-locked | n/a | degraded until re-evidenced | none | new capability matrix populated |
+| FR-12 | Failed update (app or helper) | version handshake mismatch | actuation paused | helper reinstall flow; migrations rerun | previous helper binary kept until handshake ok | observation continues | reinstall app if unrecoverable | handshake success + smoke intent (PROBE) |
+| FR-13 | Corrupted local state (global) | multi-object corruption | fresh-start experience | factory-default path: consent DOWN, models priors, registry UNKNOWN, journal tail preserved | journal tail salvage only | tier-1 only | re-grant consents | clean start; journal tombstone records event |
+
+## Standing abort conditions (from RISK_REGISTER)
+
+- RSK-101 oscillation → FR-10 path. RSK-102 lmkd canary instability → instant stock restore (E-11 protocol). RSK-106 energy budget breach ×2 days → OBSERVATION_ONLY. RSK-107 auth failure burst → helper actuation shutdown.
