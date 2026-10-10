@@ -1,0 +1,204 @@
+{
+  "package": "FixHUA Blind Genesis V10.3 Clean Repository Bound",
+  "version": "10.3",
+  "authorized_repository": "ahaggag037/research-system-brain",
+  "authorized_repository_id": 1412675689,
+  "canonical_branch": "main",
+  "repository_visibility": "public",
+  "entry_point_for_model": "model/00_CONTROL_PLANE.md",
+  "entry_point_for_user": "START_HERE_FOR_USER.md",
+  "execution_mode": "single continuous session to terminal mission state",
+  "isolation_mode": "hard clean-room repository boundary; independent public research allowed",
+  "architecture": "progressive-disclosure mission system with working memory, compliance shell, implementation completeness, GitHub continuity, clean-repository isolation, final cold-start audit",
+  "files": [
+    {
+      "path": "ONE_FILE_FALLBACK_README.md",
+      "size": 433,
+      "sha256": "53861899bdfc6996644af3867919a9523ffe0b12dac354328b19672cedb72b1f",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "START_HERE_FOR_USER.md",
+      "size": 1774,
+      "sha256": "28ea606b467fad6f9ec12287f9120a1b8e27c436c2a9ab7f94a2f736814b7f0d",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "_human/ARCHITECTURE_REVIEW.md",
+      "size": 4745,
+      "sha256": "c82abebbba1b93b14fac6b3b0b30778550459a3b5b98ac90c7f4255385fa7481",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": false
+    },
+    {
+      "path": "model/00A_SINGLE_SESSION_CONTRACT.md",
+      "size": 4843,
+      "sha256": "1930e1faeb51ccab805194d216aa626660f7b5fcbda3c5c01c43ca139076a597",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/00B_CLEAN_REPOSITORY_BOUNDARY.md",
+      "size": 5222,
+      "sha256": "9add5568022864b57496ac187ddbc21bdf0d24f14468367bb624d92ce5119e84",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/00_CONTROL_PLANE.md",
+      "size": 4604,
+      "sha256": "4bde0884827d1d34ae1154e1e849467f5b62e378868a81834208afba6958b03d",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/01_ENGINEERING_CONSTITUTION.md",
+      "size": 4341,
+      "sha256": "19194abfddffce1f23555fbfc27c09a5119b25869e3411ee888b3d57dddc1820",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/02_DISCOVERY_PROTOCOL.md",
+      "size": 5087,
+      "sha256": "88f6ee8aa19a53e02531b5c7bee226b8f9870822bf4ce8af771890dfdba0d598",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/03_WORKING_MEMORY_PROTOCOL.md",
+      "size": 3478,
+      "sha256": "62b5e84c4b479d0952d0d9c20df6b9f3ac8a4a51b7206f34b6d61966ddc492e3",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/04_COMPLIANCE_SHELL.md",
+      "size": 3166,
+      "sha256": "63389fa6f371d2f6b43d5b448c1ac917c84e1268814f517436418e55fc2e03ba",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/05A_IMPLEMENTATION_COMPLETENESS_CONTRACT.md",
+      "size": 6722,
+      "sha256": "e0358e29e80305c1586968848017cd1470bef8859de90a1c509200401284d22c",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/05B_GITHUB_CONTINUITY_CONTRACT.md",
+      "size": 4541,
+      "sha256": "e6abe5c659e173f92ab78a60d1a0ec06377310693c5ffce67a201c0b9cd904d9",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/05_KNOWLEDGE_PACKAGE_CONTRACT.md",
+      "size": 4808,
+      "sha256": "14fd78326e5e58095f8215c3448741d27dd34543c39c3f3fab6b609414017a32",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/06_VISUAL_TWIN_CONTRACT.md",
+      "size": 1845,
+      "sha256": "f746c40a9de772c1e4847b6056e4b63b95f247f01a63d809c042b7bc313dae47",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/07_FINAL_AUDIT_PROTOCOL.md",
+      "size": 4216,
+      "sha256": "6e88cb2a39ff4045bb7a14e598ef18d77693233d332fccc24a855c2b6e4ddb52",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/08_TRANSFER_PACKAGE_SPEC.md",
+      "size": 2141,
+      "sha256": "9f666d3c69091f525f80d04ad4a556d5e99acf5c166c92bc189dd7b51f553b3d",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "model/09_OPTIONAL_STUCKNESS_TOOLKIT.md",
+      "size": 1209,
+      "sha256": "035c3e35f734b9549745e490d211969ba51dd91a61b507ce7ec5f1a34b424e32",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/ACTIVE_NOTES.md",
+      "size": 177,
+      "sha256": "e90cf654a6b9e53ca8bbfc3990caf4621370bafe529c28fcc8ad670da236fbb4",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/CHECKPOINT.md",
+      "size": 258,
+      "sha256": "5504ad639bf64fe6dc50fd8fea99bdb041192f9565881c63a79f120aa33862a2",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/CONTRADICTION_REGISTER.md",
+      "size": 213,
+      "sha256": "c9c7834a906c9a5fac605b95d09372eab26a5b3d5374d36739fa17959eb8ddec",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/DECISION_LOG.md",
+      "size": 229,
+      "sha256": "be6bb7cbc539a21457a064294557435e00f2d71775c98a2b8aa57a9508a686b8",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/EXPERIMENT_REGISTRY.md",
+      "size": 312,
+      "sha256": "0367e7553cfb26980cf5d6c0a808ffbb68e91999973bf5cd7797c683dd6c4eaf",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/KNOWLEDGE_GRAPH.schema.json",
+      "size": 1263,
+      "sha256": "5a432d8deab0fc20661c2ac35b38ec214dd958c4cd5770137864c9a6c4b432ed",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/PROJECT_STATE.schema.json",
+      "size": 1244,
+      "sha256": "60a84c9346ccde59c4ed5abde959658c50157921ec2aa04aa48f056ad746f987",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/REQUIREMENT_LEDGER.md",
+      "size": 283,
+      "sha256": "954b9862d4682300fa3977ce09089a19f8fc0502cd81e95d9d03ba536a3ba88d",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/RISK_REGISTER.md",
+      "size": 199,
+      "sha256": "7e5e6976206f39bce1c6b4d7743496e2b9613274ae667373754516f7d24fb9b3",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    },
+    {
+      "path": "templates/SOURCE_INDEX.md",
+      "size": 226,
+      "sha256": "70d2e56fc0cda698cd28c2614c2c08bedf9d24d6f208d9e2e6a9be35e166ff74",
+      "purpose": "V10.3 clean-repository-bound mission package component",
+      "canonical": true
+    }
+  ]
+}
