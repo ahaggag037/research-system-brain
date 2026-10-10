@@ -196,7 +196,7 @@ DECISION: Target = Android(AOSP)-based Huawei devices (EMUI; dual-framework Harm
 EVIDENCE: S-020; kernel feature requirements from S-004/S-007/S-013.
 CONSEQUENCES: Capability probe matrix is mandatory at first run (RSK-109).
 RISKS: EMUI variance (U-005).
-REOPEN_IF: User narrows to a specific device model.
+REOPEN_IF: User narrows to a specific device model; OR a global HarmonyOS NEXT transition actually ships on Huawei flagships (market trigger added at STATE D research round, S-024 — EMUI 15 global still AOSP-based as of 2026-10).
 SUPERSEDES: —
 SUPERSEDED_BY: —
 
@@ -209,5 +209,19 @@ EVIDENCE: 01 §4/§9; 05A §13.
 CONSEQUENCES: Audit must verify no truth-state inflation.
 RISKS: None (honesty preserved).
 REOPEN_IF: Device evidence arrives.
+SUPERSEDES: —
+SUPERSEDED_BY: —
+
+## D-016 — Reclaim-engine detection (MGLRU vs classic LRU) in capability probe; per-engine CS-5 regions
+STATUS: ACTIVE
+DATE/SEQUENCE: 2026-10-10 / seq 16 (STATE D research-expansion round)
+CONTEXT: Mandatory pre-completion external research (handoff §8) found MGLRU is default-enabled on all android14-* GKI kernels and later (S-022), changing the reclaim path that CS-5 operating regions and E-06 region calibration assume (classic kswapd/LRU semantics, S-017/S-018).
+OPTIONS: (a) ignore — treat VM behavior as uniform; (b) detect reclaim engine at probe time and maintain per-engine region tables; (c) drop CS-5.
+DECISION: (b). FX-OBS capability probe records reclaim engine (`/sys/kernel/mm/lru_gen/enabled`, `min_ttl_ms`, `CONFIG_LRU_GEN*` via /proc/config.gz when readable) into the STORE capability registry as part of U-003 discovery; E-06 records MGLRU state per run and calibrates regions per engine; CS-5 region tables are explicitly per-reclaim-engine. This reinforces — does not replace — the "operating regions, not magic values" principle (02 §6, R-070).
+EVIDENCE: S-022 (kernel.org MGLRU admin guide; android14 GKI default-on reporting); S-026 (GKI matrix: android15-6.6/android16-6.12/android17-6.18).
+ASSUMPTIONS: Vendor kernels may ship classic or partial MGLRU configs → detection is per-device, never assumed.
+CONSEQUENCES: FX-OBS probe matrix + E-06 inputs extended (same-change rule applied to ARCHITECTURE.md CS-5 note, EXPERIMENT_REGISTRY E-06, FX-OBS contract); no new control surface; no privilege change.
+RISKS: Negligible — read-only detection.
+REOPEN_IF: Device probes show MGLRU state not readable or behavior indistinguishable (then collapse to single region table with wider margins).
 SUPERSEDES: —
 SUPERSEDED_BY: —
